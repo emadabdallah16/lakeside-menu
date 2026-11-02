@@ -43,18 +43,21 @@
       <div class="menu-list">
         ${data.cards.map(item => `
           <article class="menu-item">
+            <img class="item-art dessert-wobble" src="${esc(item.image)}" width="120" height="120" alt="" decoding="async">
+            <div class="item-copy">
             <div class="item-heading">
               <h2>${esc(item.name)}</h2>
               ${price(item.price, 'item-price')}
             </div>
             <p>${esc(item.note)}</p>
+            </div>
           </article>
         `).join('')}
       </div>
     </main>
     <footer class="menu-footer" aria-label="${screen === 'screen1' ? 'Cone and bowl upgrades' : 'More information'}">
       ${data.footer.map(item => `
-        <div class="footer-item"><span>${esc(item.name)}</span>${price(item.price, 'footer-price')}</div>
+        <div class="footer-item">${item.image ? `<img class="footer-art dessert-wobble" src="${esc(item.image)}" width="64" height="64" alt="" decoding="async">` : ''}<span>${esc(item.name)}</span>${price(item.price, 'footer-price')}</div>
       `).join('')}
     </footer>
   `;

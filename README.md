@@ -18,9 +18,9 @@ Open one URL in each smart TV's browser and use fullscreen if available. Test ea
 
 Both TVs use the selected Retro Parlour direction: paper-yellow `#E8E0C0`, blue ink `#174A69`, ochre price labels, large italic serif headings, and slightly tilted printed panels. Subtle halftone dots finish the feature artwork; the menu list stays clear of texture. System fonts (Times New Roman, Helvetica/Arial, Courier New) keep the menus independent of font services. The lighthouse is a simplified motif rather than the official logo.
 
-The two local images in `assets/` are AI-generated vintage dessert illustrations, not photographs of the store's servings. The cone illustration shows a single scoop; the Dubai cup illustration depicts chocolate, pistachio cream, and kataifi. See `assets/README.md` for provenance and prompts. Replace the image paths in `menu-data.js` to use different artwork. Images are decorative because the adjacent item names and descriptions provide the menu information.
+The local images in `assets/` are AI-generated dessert placeholders, not photographs of the store's servings. Every dessert and cone/bowl upgrade has its own illustration. See `assets/README.md` for provenance and prompts. Replace the image paths in `menu-data.js` to use different artwork. Images are decorative because the adjacent item names and descriptions provide the menu information.
 
-The layout is composed at 1920 × 1080 and scales as a complete canvas, preserving the menu's arrangement on landscape TVs. It remains still while displayed and centers on screens with a different aspect ratio. All listed items and confirmed prices are retained; unconfirmed prices and promotional badges are omitted.
+The layout is composed at 1920 × 1080 and scales as a complete canvas, preserving the menu's arrangement on landscape TVs. Dessert illustrations rock gently by two degrees on a seven-second loop with staggered timing. Animation is disabled when the browser requests reduced motion. The canvas centers on screens with a different aspect ratio. All listed items and confirmed prices are retained; unconfirmed prices and promotional badges are omitted.
 
 ## Local preview and checks
 
