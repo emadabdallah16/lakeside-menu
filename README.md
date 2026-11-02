@@ -14,6 +14,18 @@ Edit `menu-data.js` in GitHub and commit changes. Prices set to `null` are delib
 ## Display
 Open one URL in each smart TV's browser and use fullscreen if available. Test each TV's web-browser compatibility, sleep settings, and auto reload. An HDMI device with kiosk mode is an option if the built-in browser stops displaying.
 
-Brand colours use Lakeside navy #04245B, lake blue #3590D3, sky blue #83C2F0, ice blue #CAE5F8, lighthouse red #C62216. Fonts use Montserrat with Arial fallback. Dessert icons are placeholders and the lighthouse graphic is a simplified motif rather than the official logo.
+## Retro Parlour design
+
+Both TVs use the selected Retro Parlour direction: paper-yellow `#E8E0C0`, blue ink `#174A69`, ochre price labels, large italic serif headings, and slightly tilted printed panels. Subtle halftone dots finish the feature artwork; the menu list stays clear of texture. System fonts (Times New Roman, Helvetica/Arial, Courier New) keep the menus independent of font services. The lighthouse is a simplified motif rather than the official logo.
+
+The two local images in `assets/` are AI-generated vintage dessert illustrations, not photographs of the store's servings. The cone illustration shows a single scoop; the Dubai cup illustration depicts chocolate, pistachio cream, and kataifi. See `assets/README.md` for provenance and prompts. Replace the image paths in `menu-data.js` to use different artwork. Images are decorative because the adjacent item names and descriptions provide the menu information.
+
+The layout is composed at 1920 × 1080 and scales as a complete canvas, preserving the menu's arrangement on landscape TVs. It remains still while displayed and centers on screens with a different aspect ratio. All listed items and confirmed prices are retained; unconfirmed prices and promotional badges are omitted.
+
+## Local preview and checks
+
+From this directory, run `python -m http.server 8000 --bind 127.0.0.1` and open `http://127.0.0.1:8000/screen1.html` or `http://127.0.0.1:8000/screen2.html`. `index.html` defaults to TV 1; `index.html?screen=2` displays TV 2.
+
+Run `node --test tests/menu.test.js` for checks covering screen selection, confirmed and hidden prices, safe text rendering, assets, scaling, and hourly refresh. No package installation is required.
 
 No API keys, external data, or paid subscriptions required.
