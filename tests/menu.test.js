@@ -50,9 +50,8 @@ test('only confirmed prices appear; new prices can be added through menu data', 
   const first = render().stage.innerHTML;
   for (const price of ['$2.99', '+$1.25', '+$2.50']) assert.ok(first.includes(price));
   const second = render({ path: '/screen2.html' }).stage.innerHTML;
-  for (const type of ['feature-price', 'item-price', 'footer-price']) {
-    assert.ok(!second.includes(`class="${type}"`));
-  }
+  assert.equal((second.match(/\$6\.99/g) || []).length, 5);
+  assert.ok(!second.includes('class="footer-price"'));
   assert.ok(!second.includes('null'));
   const confirmed = render({ edit: menu => { menu.screen1.cards[0].price = '$7.50'; } }).stage.innerHTML;
   assert.ok(confirmed.includes('<span class="item-price">$7.50</span>'));
@@ -90,12 +89,17 @@ test('hourly menu refresh is retained', () => {
   assert.equal(result.reloads, 1);
 });
 
-test('both feature assets exist locally and entry points load local scripts and styles', () => {
+test('every dessert and upgrade has local artwork and entry points load local scripts and styles', () => {
   const { context } = render();
   for (const screen of ['screen1', 'screen2']) {
-    const image = context.window.LAKESIDE_MENU[screen].feature.image;
-    assert.ok(existsSync(join(directory, image)), `Missing ${image}`);
-    assert.ok(readFileSync(join(directory, image)).length > 0);
+    const menu = context.window.LAKESIDE_MENU[screen];
+    for (const item of [menu.feature, ...menu.cards, ...menu.footer.filter(item => item.price)]) {
+      assert.ok(item.image, `Missing artwork for ${item.name}`);
+      assert.ok(existsSync(join(directory, item.image)), `Missing ${item.image}`);
+      assert.ok(readFileSync(join(directory, item.image)).length > 0);
+      const html = render({ path: `/${screen}.html` }).stage.innerHTML;
+      assert.ok(html.includes(`src="${item.image}"`));
+    }
   }
   for (const file of ['index.html', 'screen1.html', 'screen2.html']) {
     const html = readFileSync(join(directory, file), 'utf8');
