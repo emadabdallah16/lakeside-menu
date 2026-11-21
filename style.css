@@ -17,11 +17,25 @@ html, body {
 
 /* Compose at 1080p; app.js fits this entire canvas to either TV. */
 #stage {
-  position: absolute; width: 1920px; height: 1080px;
+  position: fixed; top: 0; left: 0; width: 1920px; height: 1080px;
   padding: 64px 80px; overflow: hidden; transform-origin: top left;
   background: var(--paper); display: grid;
   grid-template-rows: 92px 140px minmax(0, 1fr) 76px; gap: 32px;
 }
+/* Keep setup controls outside the scaled menu, including on smaller TV viewports. */
+.fullscreen-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 10;
+  padding: 12px 18px; border: 2px solid var(--ink);
+  background: var(--paper); color: var(--ink);
+  font: 700 18px/1.2 Helvetica, Arial, sans-serif;
+  cursor: pointer; opacity: 0; pointer-events: none;
+}
+.fullscreen-toggle.is-visible, .fullscreen-toggle:hover, .fullscreen-toggle:focus-visible {
+  opacity: 1; pointer-events: auto;
+}
+.fullscreen-toggle:focus-visible { outline: 3px solid var(--brick); outline-offset: 4px; }
+.fullscreen-toggle[hidden] { display: none; }
+::backdrop { background: var(--paper); }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 12px; transform: rotate(-2deg);
@@ -67,6 +81,8 @@ html, body {
 .feature-art img {
   display: block; width: 100%; height: 100%; object-fit: contain;
   mix-blend-mode: multiply;
+  transform-origin: 50% 80%;
+  animation: dessert-rock 7s ease-in-out infinite;
 }
 .screen2 .feature-art { height: 340px; }
 /* A printed halftone finish, kept away from the menu text. */
@@ -85,8 +101,23 @@ html, body {
   min-width: 0; min-height: 0; padding: 0 10px; transform: rotate(2deg);
 }
 .menu-item {
-  min-width: 0; display: flex; flex-direction: column; justify-content: center;
-  padding: 15px 0; border-bottom: 2px dashed #174A6970;
+  min-width: 0; display: flex; align-items: center; gap: 20px;
+  padding: 10px 0; border-bottom: 2px dashed #174A6970;
+}
+.item-copy { flex: 1; min-width: 0; }
+.item-art { display: block; flex: 0 0 120px; width: 120px; height: 120px; object-fit: contain; mix-blend-mode: multiply; }
+.dessert-wobble { transform-origin: 50% 80%; animation: dessert-rock 7s ease-in-out infinite; }
+.menu-item:nth-child(2) .item-art { animation-delay: -1.8s; }
+.menu-item:nth-child(3) .item-art { animation-delay: -3.6s; }
+.menu-item:nth-child(4) .item-art { animation-delay: -5.4s; }
+.footer-art { flex: 0 0 64px; width: 64px; height: 64px; object-fit: contain; mix-blend-mode: multiply; animation-delay: -2.7s; }
+.footer-item:nth-child(2) .footer-art { animation-delay: -4.5s; }
+@keyframes dessert-rock {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dessert-wobble, .feature-art img { animation: none; }
 }
 .item-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
 .menu-item h2 {
@@ -99,5 +130,5 @@ html, body {
   border-top: 4px double var(--ink); transform: rotate(-2deg);
   font: 400 28px/1.2 'Courier New', Courier, monospace;
 }
-.footer-item { display: flex; align-items: baseline; gap: 18px; }
+.footer-item { display: flex; align-items: center; gap: 18px; }
 .footer-price { white-space: nowrap; font-weight: 700; }
