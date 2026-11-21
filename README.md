@@ -12,7 +12,11 @@ In this repository go to **Settings → Pages → Build and deployment**. Select
 Edit `menu-data.js` in GitHub and commit changes. Prices set to `null` are deliberately hidden until confirmed. The TVs automatically reload once an hour, or you can reload their browsers.
 
 ## Display
-Open one URL in each smart TV's browser and use fullscreen if available. Test each TV's web-browser compatibility, sleep settings, and auto reload. An HDMI device with kiosk mode is an option if the built-in browser stops displaying.
+For each 49-inch TV, set the display or HDMI output to **1920 × 1080, landscape**, set browser zoom to **100%**, and open the corresponding screen URL. Select **Enter fullscreen** with a mouse, keyboard, or TV remote. The setup button hides after four seconds and reappears when you move the pointer, tap the page, or focus it with Tab. It stays hidden during fullscreen; press Escape to leave fullscreen.
+
+If the TV browser does not support the Fullscreen API, use its built-in fullscreen option, or F11 on a connected computer. Browser security requires a user action to enter fullscreen, so the page cannot automatically remove browser chrome on load. For unattended startup, configure the connected device's browser in kiosk mode with the appropriate screen URL. Test each TV's sleep settings and hourly reload in that mode.
+
+Set the TV picture size to **Screen Fit**, **Just Scan**, or **1:1** (the name varies by TV) to avoid overscan cropping. The physical 49-inch size does not change the layout: at 1920 × 1080, the menu fills the viewport at its native scale. Smaller or larger 16:9 viewports scale proportionally; other aspect ratios center the complete menu with margins so nothing is stretched or cut off. Scaling recalculates on window resize and fullscreen changes.
 
 ## Retro Parlour design
 
@@ -26,6 +30,6 @@ The layout is composed at 1920 × 1080 and scales as a complete canvas, preservi
 
 From this directory, run `python -m http.server 8000 --bind 127.0.0.1` and open `http://127.0.0.1:8000/screen1.html` or `http://127.0.0.1:8000/screen2.html`. `index.html` defaults to TV 1; `index.html?screen=2` displays TV 2.
 
-Run `node --test tests/menu.test.js` for checks covering screen selection, confirmed and hidden prices, safe text rendering, assets, scaling, and hourly refresh. No package installation is required.
+Run `node --test tests/menu.test.js` for checks covering screen selection, confirmed and hidden prices, safe text rendering, assets, viewport scaling, fullscreen changes and fallbacks, setup controls, and hourly refresh. No package installation is required.
 
 No API keys, external data, or paid subscriptions required.

@@ -63,13 +63,48 @@
   `;
 
   function scale() {
-    const ratio = Math.min(innerWidth / 1920, innerHeight / 1080);
-    const x = Math.max(0, (innerWidth - 1920 * ratio) / 2);
-    const y = Math.max(0, (innerHeight - 1080 * ratio) / 2);
+    const width = document.documentElement.clientWidth || innerWidth;
+    const height = document.documentElement.clientHeight || innerHeight;
+    const ratio = Math.min(width / 1920, height / 1080);
+    const x = Math.max(0, (width - 1920 * ratio) / 2);
+    const y = Math.max(0, (height - 1080 * ratio) / 2);
     root.style.transform = `translate(${x}px,${y}px) scale(${ratio})`;
   }
 
+  const fullscreenButton = document.getElementById('fullscreen-toggle');
+  const display = document.documentElement;
+  const requestFullscreen = display.requestFullscreen || display.webkitRequestFullscreen;
+  let hideControls;
+
+  function showControls() {
+    clearTimeout(hideControls);
+    fullscreenButton.classList.add('is-visible');
+    hideControls = setTimeout(() => fullscreenButton.classList.remove('is-visible'), 4000);
+  }
+
+  function updateFullscreen() {
+    fullscreenButton.hidden = !requestFullscreen || !!(document.fullscreenElement || document.webkitFullscreenElement);
+    if (!fullscreenButton.hidden) showControls();
+    scale();
+  }
+
+  fullscreenButton.addEventListener('click', async () => {
+    try {
+      // Fullscreen must be requested from a user gesture, such as a click or remote selection.
+      await requestFullscreen.call(display);
+    } catch (error) {
+      fullscreenButton.textContent = 'Retry fullscreen';
+      fullscreenButton.title = 'Use the browser fullscreen option or F11 if fullscreen is blocked.';
+      showControls();
+    }
+  });
+  if (requestFullscreen) {
+    addEventListener('pointermove', showControls);
+    addEventListener('pointerdown', showControls);
+  }
+  document.addEventListener('fullscreenchange', updateFullscreen);
+  document.addEventListener('webkitfullscreenchange', updateFullscreen);
   addEventListener('resize', scale);
-  scale();
+  updateFullscreen();
   setInterval(() => location.reload(), 60 * 60 * 1000);
 })();

@@ -17,11 +17,25 @@ html, body {
 
 /* Compose at 1080p; app.js fits this entire canvas to either TV. */
 #stage {
-  position: absolute; width: 1920px; height: 1080px;
+  position: fixed; top: 0; left: 0; width: 1920px; height: 1080px;
   padding: 64px 80px; overflow: hidden; transform-origin: top left;
   background: var(--paper); display: grid;
   grid-template-rows: 92px 140px minmax(0, 1fr) 76px; gap: 32px;
 }
+/* Keep setup controls outside the scaled menu, including on smaller TV viewports. */
+.fullscreen-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 10;
+  padding: 12px 18px; border: 2px solid var(--ink);
+  background: var(--paper); color: var(--ink);
+  font: 700 18px/1.2 Helvetica, Arial, sans-serif;
+  cursor: pointer; opacity: 0; pointer-events: none;
+}
+.fullscreen-toggle.is-visible, .fullscreen-toggle:hover, .fullscreen-toggle:focus-visible {
+  opacity: 1; pointer-events: auto;
+}
+.fullscreen-toggle:focus-visible { outline: 3px solid var(--brick); outline-offset: 4px; }
+.fullscreen-toggle[hidden] { display: none; }
+::backdrop { background: var(--paper); }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 12px; transform: rotate(-2deg);
