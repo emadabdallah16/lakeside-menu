@@ -20,7 +20,7 @@
         <svg class="beacon" width="72" height="72" viewBox="0 0 48 48" aria-hidden="true">
           <path d="M5 38 Q14 32 24 38 T43 38" fill="none" stroke="currentColor" stroke-width="2"/>
           <path d="M16 35 L20 14 H28 L32 35Z" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M18 14 V9 H30 V14Z" fill="#C45E43"/>
+          <path d="M18 14 V9 H30 V14Z" fill="var(--brick)"/>
           <path d="M23 5 H25 V9 H23Z M22 24 H26 V35 H22Z" fill="currentColor"/>
           <path d="M14 12 L5 8 M34 12 L43 8" stroke="currentColor" stroke-width="2"/>
         </svg>
