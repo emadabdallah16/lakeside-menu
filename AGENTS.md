@@ -11,6 +11,9 @@ Routine content edits should use the existing design without restyling component
 - `style.css` owns the shared palette, typography, components, and layout.
 - `app.js` renders both menus and handles viewport scaling and fullscreen controls.
 - `menu-data.js` owns menu names, descriptions, prices, and artwork paths.
+  Screen 1 uses `cups`, `drink`, `scoops` (sizes, add-ons, and caption),
+  `waffles.options`, and `buildYourOwn` (sauces and toppings); screen 2 uses
+  `feature`, `cards`, and `footer`.
 - `screen1.html` and `screen2.html` are the TV entry points. `index.html` defaults
   to TV 1 and supports `?screen=2`.
 - `assets/README.md` records illustration provenance and prompts.
@@ -64,16 +67,24 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 
 | Role | Font stack | Existing treatment |
 | --- | --- | --- |
-| Brand name | `'Times New Roman', Times, serif` | Bold italic, 80px, line-height .95, tracking -4px |
-| Main menu heading | `'Times New Roman', Times, serif` | Bold italic, 132px, line-height 1.1, tracking -6px |
+| Brand name | `'Times New Roman', Times, serif` | Bold italic, 84px, line-height .95, tracking -4px |
+| Screen 2 main menu heading | `'Times New Roman', Times, serif` | Bold italic, 132px, line-height 1.1, tracking -6px |
 | Feature name | `'Times New Roman', Times, serif` | Bold italic, 52px, line-height 1.15, tracking -1.5px |
 | Menu item name | `Helvetica, Arial, sans-serif` | Bold, 48px, line-height 1.08, tracking -1.5px |
-| Brand subtitle | `'Courier New', Courier, monospace` | Bold, 25px, line-height 1.25, tracking 2px |
 | Feature description | `'Courier New', Courier, monospace` | Regular, 24px, line-height 1.3 |
 | Item description | `'Courier New', Courier, monospace` | Regular, 28px, line-height 1.3 |
 | Footer | `'Courier New', Courier, monospace` | Regular, 28px, line-height 1.2; bold prices |
 | Item price | `'Times New Roman', Times, serif` | Bold, 44px, line-height 1 |
 | Feature price | `'Times New Roman', Times, serif` | Bold, 88px, line-height 1, tracking -5px |
+| Screen 1 section heading | `'Times New Roman', Times, serif` | Bold italic, 56px, line-height 1.1, tracking -1.5px |
+| Screen 1 cup name | `'Times New Roman', Times, serif` | Bold italic, 48px, line-height 1.04, tracking -1px |
+| Screen 1 waffle option | `Helvetica, Arial, sans-serif` | Bold, 44px, line-height 1.1, tracking -1px |
+| Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Regular, 26px |
+| Screen 1 prices | `'Times New Roman', Times, serif` | Bold, 48px, brick on paper |
+| Scoop panel heading | `'Times New Roman', Times, serif` | Bold italic, 52px |
+| Scoop sizes and add-ons | `Helvetica, Arial, sans-serif` | Bold 26px sizes; regular 24px add-on names |
+| Scoop prices | `'Times New Roman', Times, serif` | Bold 44px sizes; 32px add-ons; blue on panel |
+| Scoop caption | `Helvetica, Arial, sans-serif` | Bold 24px, dark brown on ochre |
 
 The default body font is `Helvetica, Arial, sans-serif`. Setup controls use the same
 sans-serif stack at bold 18px. Preserve the heading's subtle brick/seafoam offset
@@ -87,19 +98,35 @@ make necessary typography adjustments at the shared component level and check bo
 - Compose at **1920 × 1080 landscape**. Scale the complete canvas proportionally
   using `app.js`; center it with margins at other aspect ratios. Keep every item
   visible without scrolling, stretching, or cropping.
-- Preserve the hierarchy: brand bar, large menu heading, left feature panel,
-  right menu list, and footer. Each screen currently has one feature and four rows.
-  If content requires a different count, deliberately adapt and verify the layout;
-  the current list grid assumes four rows.
-- Use the existing spacing as the baseline: canvas padding 64px vertically and
+- Screen 1 uses a brand bar and **four sections**: both strawberry cups and Sahlab
+  stacked as three photo rows at top left, Scoop Ice Cream at bottom left, the
+  waffle photo beside three named options at top right, and Build-Your-Own Waffle
+  Stick at bottom right. Each cup/drink row has its photo on the left, name and
+  price on a shared heading line, and description below. Keep every sauce and topping visible.
+  Baseline: 28px vertical / 44px horizontal canvas padding, an 80px brand bar,
+  20px header gap, an 824px left column, and a 48px column gap. Columns have
+  independent rows: left 7:3 (about 70% refreshments / 30% scoops), right 490px
+  for waffle options and the remaining space for Build Your Own. Both use a 28px
+  row gap. Sauces use two text columns; toppings use one.
+- Both TVs display **Lakeside Convenience** as the brand, with the brand bar
+  shifted upward 12px. Do not reintroduce the former top-right subtitle.
+- Screen 2 retains the brand bar, large menu heading, left feature panel,
+  four-row right menu list, and footer. If content requires a different count,
+  deliberately adapt and verify the layout; the classic list grid assumes four rows.
+- Screen 2 spacing baseline: canvas padding 64px vertically and
   80px horizontally, 32px between major rows, a 600px feature column, and an 80px
   gap between content columns. Keep generous whitespace and TV-distance readability.
 - Keep item names and prices aligned on a shared heading row, descriptions below,
   and illustrations beside the copy. Prices must remain fully visible and unbroken.
   Allow long names to wrap without colliding with adjacent rows or artwork.
-- Retain the printed tilt pattern: brand bar, heading, and footer at -2 degrees;
+- Screen 2 printed tilt pattern: brand bar, heading, and footer at -2 degrees;
   feature panel at -3 degrees; menu list at +2 degrees; feature price label at
   +5 degrees. Check transformed edges for clipping.
+- Screen 1 keeps the brand bar and waffle heading at -2 degrees and the scoop
+  panel at -1 degree; the denser product copy and choice lists remain level.
+- The user-requested **Best-Priced Scoops in Sylvan!** caption floats visually
+  above the scoop panel's upper-right edge, at a 4-degree tilt. Keep it stationary,
+  readable, and clear of product copy, prices, and the adjacent sections.
 - Retain dashed item dividers and the double-rule footer. Add new elements by
   extending these patterns rather than inventing a separate card or label system.
 - Keep fullscreen setup controls outside the scaled canvas, keyboard accessible,
@@ -110,9 +137,20 @@ make necessary typography adjustments at the shared component level and check bo
 Use local dessert illustrations with navy outlines, warm natural dessert colors,
 ochre details, and subtle printed shading. Match the paper background or use
 compatible transparency. Keep the entire dessert visible with `object-fit: contain`.
-Preserve the existing multiply blending and keep halftone overlays away from text.
-Record new or replacement artwork provenance in `assets/README.md`. Existing images
+Screen 1 uses the four user-supplied, AI-edited transparent product photos in
+`assets/`: the two strawberry cups, `sahlab.png`, and `waffle-stick.png`. Preserve
+their natural colors with normal blending and no halftone overlays. Place static
+ochre or seafoam oval backdrops and subtle offset ink dots behind the four photos.
+The stacked cup and Sahlab rows use 180px photo areas with 180px-wide, 196px-high
+backdrops. Preserve full photo coverage through the wobble without overlapping
+copy or prices. The waffle retains its taller 140px-wide backdrop.
+Photos sway between -1.2 and +1.2 degrees over ten seconds
+with staggered timing; preserve their display scale when animating. Disable this
+motion for `prefers-reduced-motion`. Preserve multiply blending and halftone on screen 2 illustrations,
+and keep all texture away from text.
+Record new or replacement artwork provenance in `assets/README.md`. Screen 2 images
 are illustrative placeholders; do not describe them as photos of actual servings.
+Screen 1 photos have AI edits and reconstructed details; preserve that provenance.
 The lighthouse is a simplified motif, not the official store logo.
 
 Keep motion gentle: the existing dessert animation rocks between -2 and +2 degrees

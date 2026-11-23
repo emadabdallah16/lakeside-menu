@@ -41,17 +41,13 @@ html, body {
 ::backdrop { background: var(--paper); }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 12px; transform: rotate(-2deg);
+  padding: 0 12px; transform: translateY(-12px) rotate(-2deg);
 }
 .brand { display: flex; align-items: center; gap: 16px; }
 .beacon { flex: 0 0 auto; }
 .brandname {
-  font: italic 700 80px/.95 'Times New Roman', Times, serif;
+  font: italic 700 84px/.95 'Times New Roman', Times, serif;
   letter-spacing: -4px;
-}
-.brandsub {
-  font: 700 25px/1.25 'Courier New', Courier, monospace;
-  letter-spacing: 2px;
 }
 .menu-heading {
   align-self: center; margin: 0; padding-left: 6px;
@@ -135,3 +131,104 @@ html, body {
 }
 .footer-item { display: flex; align-items: center; gap: 18px; }
 .footer-price { white-space: nowrap; font-weight: 700; }
+
+/* Screen 1: four departments, with product photography kept in natural color. */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+#stage.screen1 {
+  padding: 28px 44px;
+  grid-template-rows: 80px minmax(0, 1fr); gap: 20px;
+}
+.menu-quadrants {
+  display: grid; grid-template-columns: 824px minmax(0, 1fr);
+  gap: 48px;
+  min-width: 0; min-height: 0;
+}
+.menu-column { display: grid; min-width: 0; min-height: 0; gap: 28px; }
+.left-menu-column { grid-template-rows: minmax(0, 7fr) minmax(0, 3fr); }
+.right-menu-column { grid-template-rows: 490px minmax(0, 1fr); }
+.menu-quadrants section { min-width: 0; min-height: 0; }
+.menu-quadrants p { margin: 0; font: 400 26px/1.25 'Courier New', Courier, monospace; }
+.section-title {
+  margin: 0; font: italic 700 56px/1.1 'Times New Roman', Times, serif;
+  letter-spacing: -1.5px;
+}
+.product-photo {
+  display: block; object-fit: contain; mix-blend-mode: normal;
+  transform: scale(var(--photo-scale, 1.06)); transform-origin: 50% 80%;
+  animation: photo-sway 10s ease-in-out infinite;
+}
+.photo-backdrop { position: relative; isolation: isolate; min-height: 0; }
+.photo-backdrop::before, .photo-backdrop::after {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; top: 50%; width: 220px; height: 90%; border-radius: 50%;
+}
+.photo-backdrop::before { background: var(--ochre); opacity: .65; transform: translate(-50%, -50%) rotate(-8deg); }
+.photo-backdrop::after {
+  background: radial-gradient(var(--ink) 1px, transparent 1.2px) 0 0 / 8px 8px;
+  opacity: .16; transform: translate(-42%, -44%) rotate(8deg);
+}
+.refreshment-row:nth-child(2) .photo-backdrop::before { background: var(--seafoam); opacity: .35; }
+.refreshment-photo-space::before, .refreshment-photo-space::after { width: 180px; height: 196px; }
+.waffle-photo-space::before, .waffle-photo-space::after { width: 140px; }
+.waffle-photo-space::before { background: var(--seafoam); opacity: .35; }
+@keyframes photo-sway {
+  0%, 100% { transform: scale(var(--photo-scale, 1.06)) rotate(-1.2deg); }
+  50% { transform: scale(var(--photo-scale, 1.06)) rotate(1.2deg); }
+}
+.refreshments-section { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.refreshment-row {
+  display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px;
+  align-items: center; padding: 12px 8px; border-bottom: 2px dashed var(--rule);
+  min-width: 0; min-height: 0;
+}
+.refreshment-copy { min-width: 0; }
+.refreshment-copy h2 {
+  margin: 0; font: italic 700 48px/1.04 'Times New Roman', Times, serif;
+  letter-spacing: -1px;
+}
+.refreshment-copy p { margin-top: 10px; }
+.cup-price { font: 700 48px/1 'Times New Roman', Times, serif; color: var(--brick); white-space: nowrap; }
+.menu-quadrants .item-price { font-size: 48px; }
+.refreshment-photo-space { height: 180px; }
+.refreshment-photo { width: 100%; height: 100%; }
+/* Compensate for the transparent headroom in the Belgian cup cutout. */
+.refreshment-photo-0 { --photo-scale: 1.2; transform-origin: center bottom; animation-delay: -1s; }
+.refreshment-photo-1 { animation-delay: -4s; }
+.refreshment-photo-2 { animation-delay: -8s; }
+.waffle-section { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; }
+.waffle-section > .section-title { transform: rotate(-2deg); transform-origin: left center; }
+.waffle-menu { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 16px; min-height: 0; }
+.waffle-photo { width: 100%; height: 100%; min-height: 0; animation-delay: -6s; }
+.waffle-options { list-style: none; padding: 0; margin: 0; display: grid; grid-template-rows: repeat(3, 1fr); gap: 10px; }
+.waffle-options li { padding-bottom: 10px; border-bottom: 2px dashed var(--rule); }
+.option-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+.option-heading > h2, .option-heading > h3 { min-width: 0; }
+.waffle-options h3 { margin: 0; font: 700 44px/1.1 Helvetica, Arial, sans-serif; letter-spacing: -1px; }
+.waffle-options p { margin-top: 8px; }
+.scoops-section { position: relative; padding: 14px 24px; background: var(--panel); transform: rotate(-1deg); }
+.scoops-section .section-title { font-size: 52px; }
+.menu-quadrants .scoop-caption {
+  position: absolute; top: -16px; right: 12px; width: 302px; margin: 0;
+  padding: 10px 14px; border: 2px solid var(--ink); background: var(--ochre);
+  color: var(--price-ink); font: 700 24px/1.15 Helvetica, Arial, sans-serif;
+  text-align: center; transform: rotate(4deg);
+}
+.scoop-prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 8px 0 10px; text-align: center; }
+.scoop-prices dt { font: 700 26px/1.15 Helvetica, Arial, sans-serif; }
+.scoop-prices dd { margin: 3px 0 0; }
+.scoop-price { font: 700 44px/1 'Times New Roman', Times, serif; color: var(--ink); white-space: nowrap; }
+.scoop-addons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 10px 0 0; margin: 0; list-style: none; border-top: 2px dashed var(--rule); text-align: center; }
+.scoop-addons li { display: grid; gap: 3px; font: 400 24px/1.15 Helvetica, Arial, sans-serif; }
+.scoop-addon-price { font: 700 32px/1 'Times New Roman', Times, serif; color: var(--ink); white-space: nowrap; }
+.build-section { border-top: 4px double var(--ink); padding-top: 18px; }
+.customization-lists { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; margin-top: 18px; }
+.customization-lists h3 { margin: 0 0 10px; font: 700 30px/1.15 Helvetica, Arial, sans-serif; }
+.customization-lists ul { list-style: none; padding: 0; margin: 0; font: 400 26px/1.3 'Courier New', Courier, monospace; }
+.customization-lists li { break-inside: avoid; margin-bottom: 6px; }
+.sauce-list { columns: 2; column-gap: 24px; }
+@media (prefers-reduced-motion: reduce) {
+  .product-photo { animation: none; }
+}
