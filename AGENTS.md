@@ -81,12 +81,12 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 | Screen 1 section heading | `'Times New Roman', Times, serif` | Bold italic, 56px, line-height 1.1, tracking -1.5px |
 | Screen 1 cup name | `'Times New Roman', Times, serif` | Bold italic, 48px, line-height 1.04, tracking -1px |
 | Screen 1 waffle option | `Helvetica, Arial, sans-serif` | Bold, 44px, line-height 1.1, tracking -1px |
-| Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Bold, 26px |
+| Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Bold, 26px, with the Sahlab description at 24px to fit two lines |
 | Screen 1 prices | `'Times New Roman', Times, serif` | Bold, 48px, brick on paper |
 | Scoop panel heading | `'Times New Roman', Times, serif` | Bold italic, 52px |
 | Scoop sizes and add-ons | `Helvetica, Arial, sans-serif` | Bold 26px sizes; bold 24px add-on names |
 | Scoop prices | `'Times New Roman', Times, serif` | Bold 44px sizes; 32px add-ons; blue on panel |
-| Scoop caption | `Helvetica, Arial, sans-serif` | Bold 24px, dark brown on ochre |
+| Scoop caption and Sahlab sticker | `Helvetica, Arial, sans-serif` | Bold 24px, dark brown on ochre |
 
 All small menu descriptions, choices, footer copy, and add-on names use weight 700
 for TV-distance readability. Keep waffle customization headings as **Sauces** and
@@ -129,9 +129,11 @@ make necessary typography adjustments at the shared component level and check bo
   +5 degrees. Check transformed edges for clipping.
 - Screen 1 keeps the brand bar and waffle heading at -2 degrees and the scoop
   panel at -1 degree; the denser product copy and choice lists remain level.
-- The user-requested **Best-Priced Scoops in Sylvan!** caption floats visually
+- The **Best-Priced Scoops in Sylvan Lake!** caption floats visually
   above the scoop panel's upper-right edge, at a 4-degree tilt. Keep it stationary,
   readable, and clear of product copy, prices, and the adjacent sections.
+- The **Perfect for Winter!** sticker sits beside the Sahlab name, using the
+  same ochre treatment as the scoop caption.
 - Retain dashed item dividers and the double-rule footer. Add new elements by
   extending these patterns rather than inventing a separate card or label system.
 - Keep fullscreen setup controls outside the scaled canvas, keyboard accessible,

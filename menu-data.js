@@ -18,12 +18,13 @@ window.LAKESIDE_MENU = {
     ],
     drink: {
       name: 'Sahlab', price: '$4',
-      note: 'Mediterranean Creamy Milk Pudding Drink',
+      note: 'Warm, rich Mediterranean milk drink with cinnamon, coconut and pistachio topping',
+      sticker: 'Perfect for Winter!',
       image: 'assets/sahlab.png'
     },
     scoops: {
       name: 'Scoop Ice Cream',
-      caption: 'Best-Priced Scoops in Sylvan!',
+      caption: 'Best-Priced Scoops in Sylvan Lake!',
       sizes: [
         { name: 'Kids Scoop', price: '$2.99' },
         { name: '1 scoop', price: '$3.99' },

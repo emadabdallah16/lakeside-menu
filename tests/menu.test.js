@@ -138,7 +138,7 @@ test('scoops include all confirmed serving sizes, add-ons, and the requested cap
   for (const [label, amount] of [['Waffle cone', '+$1.5'], ['Fudge', '+$1'], ['Toppings (up to 3)', '+$1.5']]) {
     assert.ok(html.includes(`<span>${label}</span><span class="scoop-addon-price">${amount}</span>`));
   }
-  assert.ok(html.includes('Best-Priced Scoops in Sylvan!'));
+  assert.ok(html.includes('Best-Priced Scoops in Sylvan Lake!'));
   assert.equal((html.match(/class="refreshment-row"/g) || []).length, 3);
   assert.ok(!render({path:'/screen2.html'}).stage.innerHTML.includes('scoops-section'));
 });
