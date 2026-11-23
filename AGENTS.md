@@ -17,6 +17,8 @@ Routine content edits should use the existing design without restyling component
 - `screen1.html` and `screen2.html` are the TV entry points. `index.html` defaults
   to TV 1 and supports `?screen=2`.
 - `assets/README.md` records illustration provenance and prompts.
+- `export_menu.py` produces still PNGs with optional Python/Playwright tooling;
+  keep export dependencies in `requirements-export.txt`, outside the static site's runtime.
 
 Keep the site static and self-contained. Retain local assets and system fonts;
 do not add remote font services or runtime dependencies for routine design changes.
@@ -71,21 +73,24 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 | Screen 2 main menu heading | `'Times New Roman', Times, serif` | Bold italic, 132px, line-height 1.1, tracking -6px |
 | Feature name | `'Times New Roman', Times, serif` | Bold italic, 52px, line-height 1.15, tracking -1.5px |
 | Menu item name | `Helvetica, Arial, sans-serif` | Bold, 48px, line-height 1.08, tracking -1.5px |
-| Feature description | `'Courier New', Courier, monospace` | Regular, 24px, line-height 1.3 |
-| Item description | `'Courier New', Courier, monospace` | Regular, 28px, line-height 1.3 |
-| Footer | `'Courier New', Courier, monospace` | Regular, 28px, line-height 1.2; bold prices |
+| Feature description | `'Courier New', Courier, monospace` | Bold, 24px, line-height 1.3 |
+| Item description | `'Courier New', Courier, monospace` | Bold, 28px, line-height 1.3 |
+| Footer | `'Courier New', Courier, monospace` | Bold, 28px, line-height 1.2 |
 | Item price | `'Times New Roman', Times, serif` | Bold, 44px, line-height 1 |
 | Feature price | `'Times New Roman', Times, serif` | Bold, 88px, line-height 1, tracking -5px |
 | Screen 1 section heading | `'Times New Roman', Times, serif` | Bold italic, 56px, line-height 1.1, tracking -1.5px |
 | Screen 1 cup name | `'Times New Roman', Times, serif` | Bold italic, 48px, line-height 1.04, tracking -1px |
 | Screen 1 waffle option | `Helvetica, Arial, sans-serif` | Bold, 44px, line-height 1.1, tracking -1px |
-| Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Regular, 26px |
+| Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Bold, 26px |
 | Screen 1 prices | `'Times New Roman', Times, serif` | Bold, 48px, brick on paper |
 | Scoop panel heading | `'Times New Roman', Times, serif` | Bold italic, 52px |
-| Scoop sizes and add-ons | `Helvetica, Arial, sans-serif` | Bold 26px sizes; regular 24px add-on names |
+| Scoop sizes and add-ons | `Helvetica, Arial, sans-serif` | Bold 26px sizes; bold 24px add-on names |
 | Scoop prices | `'Times New Roman', Times, serif` | Bold 44px sizes; 32px add-ons; blue on panel |
 | Scoop caption | `Helvetica, Arial, sans-serif` | Bold 24px, dark brown on ochre |
 
+All small menu descriptions, choices, footer copy, and add-on names use weight 700
+for TV-distance readability. Keep waffle customization headings as **Sauces** and
+**Toppings**, without quantity qualifiers; the scoop add-on retains its own wording.
 The default body font is `Helvetica, Arial, sans-serif`. Setup controls use the same
 sans-serif stack at bold 18px. Preserve the heading's subtle brick/seafoam offset
 text shadow at only +/-1px on the native canvas to limit colored fringes.

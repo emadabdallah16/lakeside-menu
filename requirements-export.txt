@@ -1,0 +1,4 @@
+# Optional PNG export tooling; not required to view or deploy the static menus.
+playwright==1.60.0
+# Keep a prebuilt wheel available for Windows Python 3.9 (no C++ compiler needed).
+greenlet==3.1.1; python_version < "3.10"

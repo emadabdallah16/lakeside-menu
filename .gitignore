@@ -1,2 +1,4 @@
 # Local menu exports and temporary capture pages.
 output/
+.venv-export/
+__pycache__/
