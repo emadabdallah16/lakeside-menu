@@ -50,7 +50,7 @@ test('all entry points select the intended TV and its complete menu', () => {
   for (const options of [{}, { path: '/screen1.html' }, { search: '?screen=1' }]) {
     const { stage } = render(options);
     assert.equal(stage.className, 'screen1');
-    for (const name of ['Scoop Ice Cream', 'Bubble Waffle Cup', 'Ice Cream Taco', 'Cookie Dough Sundae', 'Big Cookie Sandwich']) {
+    for (const name of ['Belgian Chocolate Strawberry Cup', 'Dubai Chocolate Strawberry Cup', 'Sahlab', 'Scoop Ice Cream', 'Waffle Sticks', 'Build-Your-Own Waffle Stick']) {
       assert.ok(stage.innerHTML.includes(name));
     }
   }
@@ -66,25 +66,76 @@ test('all entry points select the intended TV and its complete menu', () => {
 
 test('only confirmed prices appear; new prices can be added through menu data', () => {
   const first = render().stage.innerHTML;
-  for (const price of ['$2.99', '+$1.25', '+$2.50']) assert.ok(first.includes(price));
+  assert.equal((first.match(/\$6\.99/g) || []).length, 1, 'only the two-scoop serving uses $6.99');
+  for (const amount of ['$9', '$13']) assert.ok(first.includes(`<span class="cup-price">${amount}</span>`));
+  for (const amount of ['$4', '$7', '$7.5']) assert.ok(first.includes(`<span class="item-price">${amount}</span>`));
+  assert.equal((first.match(/<span class="item-price">\$6<\/span>/g) || []).length, 2);
+  assert.equal((first.match(/class="item-price"/g) || []).length, 5);
+  assert.ok(first.includes('Lakeside Convenience'));
+  assert.ok(!first.includes('brandsub'));
+  assert.ok(!first.includes('CONVENIENCE / DESSERT BAR'));
+  assert.ok(!first.includes('null'));
   const second = render({ path: '/screen2.html' }).stage.innerHTML;
   assert.equal((second.match(/\$6\.99/g) || []).length, 5);
   assert.ok(!second.includes('class="footer-price"'));
   assert.ok(!second.includes('null'));
-  const confirmed = render({ edit: menu => { menu.screen1.cards[0].price = '$7.50'; } }).stage.innerHTML;
-  assert.ok(confirmed.includes('<span class="item-price">$7.50</span>'));
+  const confirmed = render({ edit: menu => {
+    menu.screen1.cups[0].price = null;
+    menu.screen1.drink.price = '$4.50';
+    menu.screen1.waffles.options[0].price = '$7.50';
+    menu.screen1.waffles.options[1].price = '';
+    menu.screen1.waffles.options[2].price = null;
+    menu.screen1.buildYourOwn.price = '$8.50';
+  } }).stage.innerHTML;
+  for (const amount of ['$4.50', '$7.50', '$8.50']) assert.ok(confirmed.includes(`<span class="item-price">${amount}</span>`));
+  assert.equal((confirmed.match(/class="cup-price"/g) || []).length, 1);
+  assert.equal((confirmed.match(/class="item-price"/g) || []).length, 3);
 });
 
 test('menu text and image attributes are escaped', () => {
   const html = render({ edit: menu => {
     menu.brand = '<script>alert(1)</script>';
-    menu.screen1.cards[0].name = 'Cookies & "cream"';
-    menu.screen1.feature.image = 'art.jpg" onerror="alert(1)';
+    menu.screen1.cups[0].name = 'Cookies & "cream"';
+    menu.screen1.cups[0].image = 'art.jpg" onerror="alert(1)';
+    menu.screen1.waffles.options[0].note = '<img src=x onerror=alert(1)>';
+    menu.screen1.buildYourOwn.sauces[0] = '<script>sauce</script>';
   } }).stage.innerHTML;
   assert.ok(!html.includes('<script>'));
   assert.ok(html.includes('&lt;script&gt;'));
   assert.ok(html.includes('Cookies &amp; &quot;cream&quot;'));
   assert.ok(html.includes('src="art.jpg&quot; onerror=&quot;alert(1)"'));
+  assert.ok(html.includes('&lt;img src=x onerror=alert(1)&gt;'));
+  assert.ok(html.includes('&lt;script&gt;sauce&lt;/script&gt;'));
+});
+
+test('screen 1 renders four sections with the complete waffle and customization menu', () => {
+  const { stage } = render();
+  const html = stage.innerHTML;
+  assert.equal((html.match(/<section /g) || []).length, 4);
+  assert.equal((html.match(/<img /g) || []).length, 4, 'two cups, one drink, and one shared waffle photo');
+  for (const name of ['Belgian', 'Biscoff', 'Dubai Chocolate', 'Belgian Milk Chocolate, Oreo Crumb, White Drizzle', 'Biscoff Sauce, Biscoff Crumb, White Drizzle', 'Belgian Milk Chocolate, Pistachio sauce, Kataifi, Crushed Pistachios']) {
+    assert.ok(html.includes(name), `Missing waffle option or description: ${name}`);
+  }
+  const sauces = ['Belgian Milk Chocolate', 'Belgian White Chocolate', 'Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
+  const toppings = ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&amp;Ms', 'Sprinkles'];
+  for (const choice of [...sauces, ...toppings]) assert.ok(html.includes(`<li>${choice}</li>`), `Missing choice: ${choice}`);
+  assert.ok(html.includes('<h3>Sauces (up to 2 +1 drizzle)</h3>'));
+  assert.ok(html.includes('<h3>Toppings (up to 3)</h3>'));
+  assert.ok(html.includes('Scoop Ice Cream'));
+  assert.ok(!html.includes('Waffle cone upgrade'));
+});
+
+test('scoops include all confirmed serving sizes, add-ons, and the requested caption', () => {
+  const html = render().stage.innerHTML;
+  for (const [label, amount] of [['1 scoop', '$3.99'], ['2 scoops', '$6.99'], ['3 scoops', '$9.99']]) {
+    assert.ok(html.includes(`<dt>${label}</dt><dd><span class="scoop-price">${amount}</span></dd>`));
+  }
+  for (const [label, amount] of [['Waffle cone', '+$1.5'], ['Fudge', '+$1'], ['Toppings (up to 3)', '+$1.5']]) {
+    assert.ok(html.includes(`<span>${label}</span><span class="scoop-addon-price">${amount}</span>`));
+  }
+  assert.ok(html.includes('Best-Priced Scoops in Sylvan!'));
+  assert.equal((html.match(/class="refreshment-row"/g) || []).length, 3);
+  assert.ok(!render({path:'/screen2.html'}).stage.innerHTML.includes('scoops-section'));
 });
 
 test('the 1080p canvas fits HD, 4K, and other aspect ratios and responds to resize', () => {
@@ -174,11 +225,14 @@ test('setup controls hide when idle and return on pointer activity', () => {
   assert.equal(result.timeouts.size, 1, 'pointer activity resets the idle timer');
 });
 
-test('every dessert and upgrade has local artwork and entry points load local scripts and styles', () => {
+test('all product photos and classic illustrations are local and entry points load local scripts and styles', () => {
   const { context } = render();
   for (const screen of ['screen1', 'screen2']) {
     const menu = context.window.LAKESIDE_MENU[screen];
-    for (const item of [menu.feature, ...menu.cards, ...menu.footer.filter(item => item.price)]) {
+    const products = screen === 'screen1'
+      ? [...menu.cups, menu.drink, menu.waffles]
+      : [menu.feature, ...menu.cards, ...menu.footer.filter(item => item.price)];
+    for (const item of products) {
       assert.ok(item.image, `Missing artwork for ${item.name}`);
       assert.ok(existsSync(join(directory, item.image)), `Missing ${item.image}`);
       assert.ok(readFileSync(join(directory, item.image)).length > 0);

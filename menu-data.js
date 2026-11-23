@@ -1,25 +1,58 @@
 /* Edit items and prices here. A null price is hidden, not invented.
-   Feature images are decorative illustrations; replace them with your own artwork if desired. */
+   Images are decorative; edited photo provenance is recorded in assets/README.md. */
 window.LAKESIDE_MENU = {
-  brand: 'Lakeside',
-  subtitle: 'CONVENIENCE / DESSERT BAR',
+  brand: 'Lakeside Convenience',
   screen1: {
-    title: 'Ice cream', emphasis: '& waffles',
-    feature: {
-      name: 'Scoop Ice Cream', price: '$2.99',
-      note: 'Single scoop • Choose your flavour',
-      image: 'assets/scoop-illustration.jpg'
-    },
-    cards: [
-      { image: 'assets/bubble-waffle.png', name: 'Bubble Waffle Cup', note: 'Warm bubble waffle + ice cream', price: null },
-      { image: 'assets/ice-cream-taco.png', name: 'Ice Cream Taco', note: 'A waffle-cone twist', price: null },
-      { image: 'assets/cookie-dough-sundae.png', name: 'Cookie Dough Sundae', note: 'Vanilla, cookie dough + fudge', price: null },
-      { image: 'assets/cookie-sandwich.png', name: 'Big Cookie Sandwich', note: 'Ice cream between cookies', price: null }
+    title: 'Strawberry cups, Sahlab, scoop ice cream & waffle sticks',
+    cups: [
+      {
+        name: 'Belgian Chocolate Strawberry Cup', price: '$9',
+        note: 'Strawberries & Belgian Milk Chocolate',
+        image: 'assets/chocolate-strawberry-cup-photo.png'
+      },
+      {
+        name: 'Dubai Chocolate Strawberry Cup', price: '$13',
+        note: 'Strawberries, Belgian Milk Chocolate, Pistachio Cream, Kataifi',
+        image: 'assets/pistachio-strawberry-cup-photo.png'
+      }
     ],
-    footer: [
-      { image: 'assets/waffle-cone.png', name: 'Waffle cone upgrade', price: '+$1.25' },
-      { image: 'assets/waffle-bowl.png', name: 'Waffle bowl upgrade', price: '+$2.50' }
-    ]
+    drink: {
+      name: 'Sahlab', price: '$4',
+      note: 'Mediterranean Creamy Milk Pudding Drink',
+      image: 'assets/sahlab.png'
+    },
+    scoops: {
+      name: 'Scoop Ice Cream',
+      caption: 'Best-Priced Scoops in Sylvan!',
+      sizes: [
+        { name: '1 scoop', price: '$3.99' },
+        { name: '2 scoops', price: '$6.99' },
+        { name: '3 scoops', price: '$9.99' }
+      ],
+      addons: [
+        { name: 'Waffle cone', price: '+$1.5' },
+        { name: 'Fudge', price: '+$1' },
+        { name: 'Toppings (up to 3)', price: '+$1.5' }
+      ]
+    },
+    waffles: {
+      name: 'Waffle Sticks', image: 'assets/waffle-stick.png',
+      options: [
+        { name: 'Belgian', note: 'Belgian Milk Chocolate, Oreo Crumb, White Drizzle', price: '$6' },
+        { name: 'Biscoff', note: 'Biscoff Sauce, Biscoff Crumb, White Drizzle', price: '$6' },
+        { name: 'Dubai Chocolate', note: 'Belgian Milk Chocolate, Pistachio sauce, Kataifi, Crushed Pistachios', price: '$7' }
+      ]
+    },
+    buildYourOwn: {
+      sauceHeading: 'Sauces (up to 2 +1 drizzle)',
+      toppingHeading: 'Toppings (up to 3)',
+      name: 'Build-Your-Own Waffle Stick', price: '$7.5',
+      sauces: [
+        'Belgian Milk Chocolate', 'Belgian White Chocolate', 'Nutella',
+        'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'
+      ],
+      toppings: ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&Ms', 'Sprinkles']
+    }
   },
   screen2: {
     title: 'Sweet', emphasis: 'creations',

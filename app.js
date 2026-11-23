@@ -14,7 +14,7 @@
     ? '' : `<span class="${className}">${esc(value)}</span>`;
 
   root.className = screen;
-  root.innerHTML = `
+  const header = `
     <header class="topbar">
       <div class="brand">
         <svg class="beacon" width="72" height="72" viewBox="0 0 48 48" aria-hidden="true">
@@ -26,8 +26,69 @@
         </svg>
         <div class="brandname">${esc(menu.brand)}</div>
       </div>
-      <div class="brandsub">${esc(menu.subtitle)}</div>
-    </header>
+    </header>`;
+
+  function renderFourSections() {
+    return `
+    <h1 class="visually-hidden">${esc(data.title)}</h1>
+    <main class="menu-quadrants" aria-label="${esc(data.title)}">
+      <div class="menu-column left-menu-column">
+        <section class="refreshments-section" aria-label="Strawberry cups and Sahlab">
+        ${[...data.cups, data.drink].map((item, index) => `
+          <article class="refreshment-row" aria-labelledby="refreshment-${index}">
+            <div class="refreshment-photo-space photo-backdrop">
+              <img class="product-photo refreshment-photo refreshment-photo-${index}" src="${esc(item.image)}" alt="" decoding="async">
+            </div>
+            <div class="refreshment-copy">
+              <div class="option-heading"><h2 id="refreshment-${index}">${esc(item.name)}</h2>${price(item.price, index < data.cups.length ? 'cup-price' : 'item-price')}</div>
+              <p>${esc(item.note)}</p>
+            </div>
+          </article>`).join('')}
+        </section>
+        <section class="scoops-section" aria-labelledby="scoops-title">
+          <h2 id="scoops-title" class="section-title">${esc(data.scoops.name)}</h2>
+          <p class="scoop-caption">${esc(data.scoops.caption)}</p>
+          <dl class="scoop-prices">${data.scoops.sizes.map(item => `
+            <div><dt>${esc(item.name)}</dt><dd>${price(item.price, 'scoop-price')}</dd></div>`).join('')}
+          </dl>
+          <ul class="scoop-addons">${data.scoops.addons.map(item => `
+            <li><span>${esc(item.name)}</span>${price(item.price, 'scoop-addon-price')}</li>`).join('')}
+          </ul>
+        </section>
+      </div>
+      <div class="menu-column right-menu-column">
+      <section class="waffle-section" aria-labelledby="waffle-title">
+        <h2 id="waffle-title" class="section-title">${esc(data.waffles.name)}</h2>
+        <div class="waffle-menu">
+          <div class="photo-backdrop waffle-photo-space"><img class="product-photo waffle-photo" src="${esc(data.waffles.image)}" alt="" decoding="async"></div>
+          <ol class="waffle-options">
+            ${data.waffles.options.map(item => `
+              <li>
+                <div class="option-heading"><h3>${esc(item.name)}</h3>${price(item.price, 'item-price')}</div>
+                <p>${esc(item.note)}</p>
+              </li>`).join('')}
+          </ol>
+        </div>
+      </section>
+      <section class="build-section" aria-labelledby="build-title">
+        <div class="option-heading"><h2 id="build-title" class="section-title">${esc(data.buildYourOwn.name)}</h2>${price(data.buildYourOwn.price, 'item-price')}</div>
+        <div class="customization-lists">
+          <div class="sauce-group">
+            <h3>${esc(data.buildYourOwn.sauceHeading)}</h3>
+            <ul class="sauce-list">${data.buildYourOwn.sauces.map(sauce => `<li>${esc(sauce)}</li>`).join('')}</ul>
+          </div>
+          <div class="topping-group">
+            <h3>${esc(data.buildYourOwn.toppingHeading)}</h3>
+            <ul>${data.buildYourOwn.toppings.map(topping => `<li>${esc(topping)}</li>`).join('')}</ul>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>`;
+  }
+
+  function renderClassicMenu() {
+    return `
     <h1 class="menu-heading">${esc(data.title)} <span>${esc(data.emphasis)}</span></h1>
     <main class="content" aria-label="${esc(data.title)} ${esc(data.emphasis)}">
       <article class="feature" aria-labelledby="feature-name">
@@ -55,12 +116,15 @@
         `).join('')}
       </div>
     </main>
-    <footer class="menu-footer" aria-label="${screen === 'screen1' ? 'Cone and bowl upgrades' : 'More information'}">
+    <footer class="menu-footer" aria-label="More information">
       ${data.footer.map(item => `
         <div class="footer-item">${item.image ? `<img class="footer-art dessert-wobble" src="${esc(item.image)}" width="64" height="64" alt="" decoding="async">` : ''}<span>${esc(item.name)}</span>${price(item.price, 'footer-price')}</div>
       `).join('')}
     </footer>
-  `;
+    `;
+  }
+
+  root.innerHTML = header + (screen === 'screen1' ? renderFourSections() : renderClassicMenu());
 
   function scale() {
     const width = document.documentElement.clientWidth || innerWidth;
