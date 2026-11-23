@@ -25,9 +25,10 @@ window.LAKESIDE_MENU = {
       name: 'Scoop Ice Cream',
       caption: 'Best-Priced Scoops in Sylvan!',
       sizes: [
+        { name: 'Kids Scoop', price: '$2.99' },
         { name: '1 scoop', price: '$3.99' },
         { name: '2 scoops', price: '$6.99' },
-        { name: '3 scoops', price: '$9.99' }
+        { name: '3 scoops', price: '$8.99' }
       ],
       addons: [
         { name: 'Waffle cone', price: '+$1.5' },
