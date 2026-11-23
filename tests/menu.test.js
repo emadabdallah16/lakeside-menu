@@ -119,8 +119,8 @@ test('screen 1 renders four sections with the complete waffle and customization 
   const sauces = ['Belgian Milk Chocolate', 'Belgian White Chocolate', 'Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
   const toppings = ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&amp;Ms', 'Sprinkles'];
   for (const choice of [...sauces, ...toppings]) assert.ok(html.includes(`<li>${choice}</li>`), `Missing choice: ${choice}`);
-  assert.ok(html.includes('<h3>Sauces (up to 2 +1 drizzle)</h3>'));
-  assert.ok(html.includes('<h3>Toppings (up to 3)</h3>'));
+  assert.ok(html.includes('<h3>Sauces</h3>'));
+  assert.ok(html.includes('<h3>Toppings</h3>'));
   assert.ok(html.includes('Scoop Ice Cream'));
   assert.ok(!html.includes('Waffle cone upgrade'));
 });

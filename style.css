@@ -72,7 +72,7 @@ html, body {
 }
 .feature p {
   max-width: 520px; margin: 14px 0 0;
-  font: 400 24px/1.3 'Courier New', Courier, monospace;
+  font: 700 24px/1.3 'Courier New', Courier, monospace;
 }
 .feature-art {
   position: absolute; bottom: 6px; right: 14px; width: 410px; height: 370px;
@@ -122,12 +122,12 @@ html, body {
 .menu-item h2 {
   margin: 0; font: 700 48px/1.08 Helvetica, Arial, sans-serif; letter-spacing: -1.5px;
 }
-.menu-item p { margin: 12px 0 0; font: 400 28px/1.3 'Courier New', Courier, monospace; }
+.menu-item p { margin: 12px 0 0; font: 700 28px/1.3 'Courier New', Courier, monospace; }
 .item-price { flex: 0 0 auto; font: 700 44px/1 'Times New Roman', Times, serif; color: var(--brick); }
 .menu-footer {
   display: flex; align-items: center; gap: 64px; margin: 0 4px; padding: 16px 8px 0;
   border-top: 4px double var(--ink); transform: rotate(-2deg);
-  font: 400 28px/1.2 'Courier New', Courier, monospace;
+  font: 700 28px/1.2 'Courier New', Courier, monospace;
 }
 .footer-item { display: flex; align-items: center; gap: 18px; }
 .footer-price { white-space: nowrap; font-weight: 700; }
@@ -150,7 +150,7 @@ html, body {
 .left-menu-column { grid-template-rows: minmax(0, 7fr) minmax(0, 3fr); }
 .right-menu-column { grid-template-rows: 490px minmax(0, 1fr); }
 .menu-quadrants section { min-width: 0; min-height: 0; }
-.menu-quadrants p { margin: 0; font: 400 26px/1.25 'Courier New', Courier, monospace; }
+.menu-quadrants p { margin: 0; font: 700 26px/1.25 'Courier New', Courier, monospace; }
 .section-title {
   margin: 0; font: italic 700 56px/1.1 'Times New Roman', Times, serif;
   letter-spacing: -1.5px;
@@ -221,12 +221,12 @@ html, body {
 .scoop-prices dd { margin: 3px 0 0; }
 .scoop-price { font: 700 44px/1 'Times New Roman', Times, serif; color: var(--ink); white-space: nowrap; }
 .scoop-addons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 10px 0 0; margin: 0; list-style: none; border-top: 2px dashed var(--rule); text-align: center; }
-.scoop-addons li { display: grid; gap: 3px; font: 400 24px/1.15 Helvetica, Arial, sans-serif; }
+.scoop-addons li { display: grid; gap: 3px; font: 700 24px/1.15 Helvetica, Arial, sans-serif; }
 .scoop-addon-price { font: 700 32px/1 'Times New Roman', Times, serif; color: var(--ink); white-space: nowrap; }
 .build-section { border-top: 4px double var(--ink); padding-top: 18px; }
 .customization-lists { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; margin-top: 18px; }
 .customization-lists h3 { margin: 0 0 10px; font: 700 30px/1.15 Helvetica, Arial, sans-serif; }
-.customization-lists ul { list-style: none; padding: 0; margin: 0; font: 400 26px/1.3 'Courier New', Courier, monospace; }
+.customization-lists ul { list-style: none; padding: 0; margin: 0; font: 700 26px/1.3 'Courier New', Courier, monospace; }
 .customization-lists li { break-inside: avoid; margin-bottom: 6px; }
 .sauce-list { columns: 2; column-gap: 24px; }
 @media (prefers-reduced-motion: reduce) {
