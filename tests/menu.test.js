@@ -127,9 +127,14 @@ test('screen 1 renders four sections with the complete waffle and customization 
 
 test('scoops include all confirmed serving sizes, add-ons, and the requested caption', () => {
   const html = render().stage.innerHTML;
-  for (const [label, amount] of [['1 scoop', '$3.99'], ['2 scoops', '$6.99'], ['3 scoops', '$9.99']]) {
-    assert.ok(html.includes(`<dt>${label}</dt><dd><span class="scoop-price">${amount}</span></dd>`));
-  }
+  const sizes = Array.from(html.matchAll(/<dt>([^<]+)<\/dt><dd><span class="scoop-price">([^<]+)<\/span><\/dd>/g),
+    ([, label, amount]) => [label, amount]);
+  assert.deepEqual(sizes, [
+    ['Kids Scoop', '$2.99'],
+    ['1 scoop', '$3.99'],
+    ['2 scoops', '$6.99'],
+    ['3 scoops', '$8.99']
+  ]);
   for (const [label, amount] of [['Waffle cone', '+$1.5'], ['Fudge', '+$1'], ['Toppings (up to 3)', '+$1.5']]) {
     assert.ok(html.includes(`<span>${label}</span><span class="scoop-addon-price">${amount}</span>`));
   }
