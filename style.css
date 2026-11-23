@@ -190,6 +190,7 @@ html, body {
   letter-spacing: -1px;
 }
 .refreshment-copy p { margin-top: 10px; }
+.refreshment-copy .drink-description { font-size: 24px; }
 .cup-price { font: 700 48px/1 'Times New Roman', Times, serif; color: var(--brick); white-space: nowrap; }
 .menu-quadrants .item-price { font-size: 48px; }
 .refreshment-photo-space { height: 180px; }
@@ -210,11 +211,18 @@ html, body {
 .waffle-options p { margin-top: 8px; }
 .scoops-section { position: relative; padding: 14px 24px; background: var(--panel); transform: rotate(-1deg); }
 .scoops-section .section-title { font-size: 52px; }
-.menu-quadrants .scoop-caption {
-  position: absolute; top: -16px; right: 12px; width: 302px; margin: 0;
-  padding: 10px 14px; border: 2px solid var(--ink); background: var(--ochre);
+.menu-quadrants .menu-sticker {
+  border: 2px solid var(--ink); background: var(--ochre);
   color: var(--price-ink); font: 700 24px/1.15 Helvetica, Arial, sans-serif;
-  text-align: center; transform: rotate(4deg);
+  text-align: center;
+}
+.winter-sticker {
+  align-self: center; margin-right: auto; padding: 4px 10px;
+  white-space: nowrap; transform: rotate(-4deg);
+}
+.scoop-caption {
+  position: absolute; top: -16px; right: 12px; width: 302px;
+  padding: 10px 14px; transform: rotate(4deg);
 }
 .scoop-prices { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; margin: 8px 0 10px; text-align: center; }
 .scoop-prices dt { font: 700 26px/1.15 Helvetica, Arial, sans-serif; }

@@ -40,14 +40,18 @@
               <img class="product-photo refreshment-photo refreshment-photo-${index}" src="${esc(item.image)}" alt="" decoding="async">
             </div>
             <div class="refreshment-copy">
-              <div class="option-heading"><h2 id="refreshment-${index}">${esc(item.name)}</h2>${price(item.price, index < data.cups.length ? 'cup-price' : 'item-price')}</div>
-              <p>${esc(item.note)}</p>
+              <div class="option-heading">
+                <h2 id="refreshment-${index}">${esc(item.name)}</h2>
+                ${item.sticker ? `<span class="menu-sticker winter-sticker">${esc(item.sticker)}</span>` : ''}
+                ${price(item.price, index < data.cups.length ? 'cup-price' : 'item-price')}
+              </div>
+              <p${item === data.drink ? ' class="drink-description"' : ''}>${esc(item.note)}</p>
             </div>
           </article>`).join('')}
         </section>
         <section class="scoops-section" aria-labelledby="scoops-title">
           <h2 id="scoops-title" class="section-title">${esc(data.scoops.name)}</h2>
-          <p class="scoop-caption">${esc(data.scoops.caption)}</p>
+          <p class="menu-sticker scoop-caption">${esc(data.scoops.caption)}</p>
           <dl class="scoop-prices">${data.scoops.sizes.map(item => `
             <div><dt>${esc(item.name)}</dt><dd>${price(item.price, 'scoop-price')}</dd></div>`).join('')}
           </dl>
