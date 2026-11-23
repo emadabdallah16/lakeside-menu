@@ -116,7 +116,7 @@ test('screen 1 renders four sections with the complete waffle and customization 
   for (const name of ['Belgian', 'Biscoff', 'Dubai Chocolate', 'Belgian Milk Chocolate, Oreo Crumb, White Drizzle', 'Biscoff Sauce, Biscoff Crumb, White Drizzle', 'Belgian Milk Chocolate, Pistachio sauce, Kataifi, Crushed Pistachios']) {
     assert.ok(html.includes(name), `Missing waffle option or description: ${name}`);
   }
-  const sauces = ['Belgian Milk Chocolate', 'Belgian White Chocolate', 'Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
+  const sauces = ['Milk Chocolate', 'White Chocolate', 'Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
   const toppings = ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&amp;Ms', 'Sprinkles'];
   for (const choice of [...sauces, ...toppings]) assert.ok(html.includes(`<li>${choice}</li>`), `Missing choice: ${choice}`);
   assert.ok(html.includes('<h3>Sauces</h3>'));
