@@ -2,6 +2,10 @@
 
 Two independent 1920 × 1080 landscape menu pages for Lakeside Convenience.
 
+Open https://emadabdallah16.github.io/lakeside-menu/ on each TV. Choose a menu with the arrows and press OK, then press OK on **Enter fullscreen**. To switch menus, exit fullscreen and use browser Back. Each TV navigates independently.
+
+To add a screen, place its standalone page and assets in a new folder (for example, `menus/summer/index.html`). Add a link inside the navigation in `index.html` using that relative path and the menu name. The home screen automatically includes the link in remote navigation.
+
 - TV 1: https://emadabdallah16.github.io/lakeside-menu/screen1.html
 - TV 2: https://emadabdallah16.github.io/lakeside-menu/screen2.html
 
@@ -9,7 +13,7 @@ Two independent 1920 × 1080 landscape menu pages for Lakeside Convenience.
 In this repository go to **Settings → Pages → Build and deployment**. Select **Deploy from a branch**, **main**, **/(root)**, then **Save**. URLs work after Pages deployment.
 
 ## Edit your menu
-Edit `menu-data.js` in GitHub and commit changes. Prices set to `null` are deliberately hidden until confirmed. The TVs automatically reload once an hour, or you can reload their browsers.
+Edit `screen1-data.js` or `screen2-data.js` in GitHub and commit changes. Prices set to `null` are deliberately hidden until confirmed. The TVs automatically reload once an hour, or you can reload their browsers.
 
 TV 1 has four sections: both strawberry cups and Sahlab stacked as three rows at top left, Scoop Ice Cream in approximately the bottom 30% of the left column, three waffle-stick options at top right, and build-your-own sauces and toppings below. Edit `screen1.cups`, `screen1.drink`, `screen1.scoops`, `screen1.waffles.options`, and `screen1.buildYourOwn` in the menu data. The Belgian strawberry cup is **$9**, the Dubai strawberry cup **$13**, and Sahlab **$4**. Belgian and Biscoff waffle sticks are **$6**, Dubai Chocolate **$7**, and Build Your Own **$7.50**. Scoops cost **$2.99 / $3.99 / $6.99 / $8.99** for kids / one / two / three scoops, with waffle cone **+$1.50**, fudge **+$1.00**, and up to three toppings **+$1.50**. TV 2 retains its existing menu and `feature`, `cards`, and `footer` data structure.
 
@@ -28,7 +32,7 @@ Both TVs use the selected Retro Parlour direction: paper-yellow `#E8E0C0`, deep 
 
 The TV palette targets at least 7:1 computed sRGB contrast for all menu text and prices: approximately 9.6:1 for blue on paper, 8.4:1 for blue on the feature panel, 7.16:1 for brick prices on paper, and 7.13:1 for dark brown on ochre. This uses the [W3C enhanced contrast guidance](https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html) as a design target. The heading's colored offsets are limited to one pixel on each side for a quieter printed edge. The original paper background is retained to match the illustrations. Verify the result on the actual TVs under store lighting; computed contrast does not account for display calibration, glare, or viewing distance.
 
-TV 1 uses the four user-supplied photo cutouts in `assets/`: Belgian chocolate strawberry cup, Dubai chocolate strawberry cup, Sahlab, and waffle stick. Each cup/drink photo sits beside its name, description, and confirmed price in a dedicated row; the waffle photo sits left of the three named options. These photos use natural colors without multiply blending or halftone overlays. TV 2 retains its AI-generated illustrative placeholders, not photographs of the store's servings. See `assets/README.md` for all image provenance, AI edits, and prompts. Replace image paths in `menu-data.js` to use different artwork. Images are decorative because adjacent text provides the menu information.
+TV 1 uses the four user-supplied photo cutouts in `assets/`: Belgian chocolate strawberry cup, Dubai chocolate strawberry cup, Sahlab, and waffle stick. Each cup/drink photo sits beside its name, description, and confirmed price in a dedicated row; the waffle photo sits left of the three named options. These photos use natural colors without multiply blending or halftone overlays. TV 2 retains its AI-generated illustrative placeholders, not photographs of the store's servings. See `assets/README.md` for all image provenance, AI edits, and prompts. Replace image paths in `screen1-data.js` or `screen2-data.js` to use different artwork. Images are decorative because adjacent text provides the menu information.
 
 The layout is composed at 1920 × 1080 and scales as a complete canvas, preserving each menu's arrangement on landscape TVs. Both TVs show **Lakeside Convenience** higher in the brand bar, with no top-right subtitle. TV 1 uses italic serif section and product names, bold sans-serif waffle options, and monospace descriptions and choices. Its left column uses a 70/30 split with a gap: three cup/drink rows above a compact tilted scoop panel. The **Best-Priced Scoops in Sylvan Lake!** caption floats above that panel as a stationary ochre label. A smaller **Perfect for Winter!** sticker sits beside the Sahlab name. Ochre and seafoam oval backdrops with offset halftone dots sit behind the four photos, leaving menu copy on solid backgrounds. The photos wobble gently by 1.2 degrees on a staggered ten-second loop. TV 2 retains the large heading, feature panel, four illustrated rows, and footer; its dessert illustrations rock by two degrees on a seven-second loop. All artwork animation is disabled when the browser requests reduced motion. The canvas centers on screens with a different aspect ratio. Unconfirmed prices are omitted.
 
@@ -39,7 +43,7 @@ quantity wording. Keep the existing font families and sizes when editing copy.
 
 ## Local preview and checks
 
-From this directory, run `python -m http.server 8000 --bind 127.0.0.1` and open `http://127.0.0.1:8000/screen1.html` or `http://127.0.0.1:8000/screen2.html`. `index.html` defaults to TV 1; `index.html?screen=2` displays TV 2.
+From this directory, run `python -m http.server 8000 --bind 127.0.0.1` and open `http://127.0.0.1:8000/screen1.html` or `http://127.0.0.1:8000/screen2.html`. `index.html` opens the menu chooser; `index.html?screen=2` displays TV 2.
 
 Run `node --test tests/menu.test.js` for checks covering screen selection, confirmed and hidden prices, safe text rendering, assets, viewport scaling, fullscreen changes and fallbacks, setup controls, and hourly refresh. No package installation is required.
 

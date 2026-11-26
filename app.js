@@ -1,10 +1,8 @@
 (function () {
   'use strict';
 
-  const params = new URLSearchParams(location.search);
-  const screen = params.get('screen') === '2' || location.pathname.endsWith('/screen2.html')
-    ? 'screen2' : 'screen1';
   const menu = window.LAKESIDE_MENU;
+  const screen = menu.screen1 ? 'screen1' : 'screen2';
   const data = menu[screen];
   const root = document.getElementById('stage');
   const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -152,7 +150,10 @@
 
   function updateFullscreen() {
     fullscreenButton.hidden = !requestFullscreen || !!(document.fullscreenElement || document.webkitFullscreenElement);
-    if (!fullscreenButton.hidden) showControls();
+    if (!fullscreenButton.hidden) {
+      fullscreenButton.focus?.();
+      showControls();
+    }
     scale();
   }
 

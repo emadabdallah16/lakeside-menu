@@ -6,7 +6,7 @@ const vm = require('node:vm');
 
 const directory = join(__dirname, '..');
 const app = readFileSync(join(directory, 'app.js'), 'utf8');
-const data = readFileSync(join(directory, 'menu-data.js'), 'utf8');
+
 
 function render({ path = '/index.html', search = '', width = 1920, height = 1080, edit, editDocument } = {}) {
   const stage = { style: {} };
@@ -40,7 +40,8 @@ function render({ path = '/index.html', search = '', width = 1920, height = 1080
     setInterval: (callback, delay) => { timers.push({ callback, delay }); }
   };
   vm.createContext(context);
-  vm.runInContext(data, context);
+  const screen = path.endsWith('screen2.html') || search === '?screen=2' ? 'screen2' : 'screen1';
+  vm.runInContext(readFileSync(join(directory, screen + '-data.js'), 'utf8'), context);
   if (edit) edit(context.window.LAKESIDE_MENU);
   vm.runInContext(app, context);
   return { stage, context, events, timers, timeouts, classes, fullscreenButton, get reloads() { return reloads; } };
@@ -233,7 +234,7 @@ test('setup controls hide when idle and return on pointer activity', () => {
 test('all product photos and classic illustrations are local and entry points load local scripts and styles', () => {
   const { context } = render();
   for (const screen of ['screen1', 'screen2']) {
-    const menu = context.window.LAKESIDE_MENU[screen];
+    const menu = render({ path: "/" + screen + ".html" }).context.window.LAKESIDE_MENU[screen];
     const products = screen === 'screen1'
       ? [...menu.cups, menu.drink, menu.waffles]
       : [menu.feature, ...menu.cards, ...menu.footer.filter(item => item.price)];
@@ -245,10 +246,10 @@ test('all product photos and classic illustrations are local and entry points lo
       assert.ok(html.includes(`src="${item.image}"`));
     }
   }
-  for (const file of ['index.html', 'screen1.html', 'screen2.html']) {
+  for (const file of ['screen1.html', 'screen2.html']) {
     const html = readFileSync(join(directory, file), 'utf8');
     assert.ok(html.includes('href="style.css"'));
-    assert.ok(html.includes('src="menu-data.js"'));
+    assert.ok(html.includes(file.replace('.html', '-data.js')));
     assert.ok(html.includes('src="app.js"'));
   }
 });
