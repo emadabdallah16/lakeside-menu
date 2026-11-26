@@ -245,3 +245,13 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .product-photo { animation: none; }
 }
+
+body.launcher { overflow: auto; }
+.launcher main { max-width: 64rem; margin: auto; padding: 6vh 5vw; }
+.launcher header { font: bold italic clamp(1.6rem, 3vw, 3rem) Georgia, serif; padding-bottom: .5em; border-bottom: 5px double; }
+.launcher h1 { font: bold italic clamp(2.4rem, 5vw, 5rem) Georgia, serif; margin: .55em 0; }
+.launcher nav { display: grid; gap: 1rem; }
+.launcher a { display: flex; gap: 1em; align-items: center; color: var(--ink); background: var(--panel); padding: .4em .7em; border: 2px solid; text-decoration: none; font-size: clamp(1.3rem, 3vw, 2.6rem); font-weight: bold; }
+.launcher a:focus { outline: 4px solid var(--ink); outline-offset: 3px; background: var(--ochre); }
+.launcher img { width: 3em; height: 3em; object-fit: contain; }
+.launcher p { font-size: clamp(1rem, 2vw, 1.6rem); }

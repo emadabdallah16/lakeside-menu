@@ -10,12 +10,12 @@ Routine content edits should use the existing design without restyling component
 
 - `style.css` owns the shared palette, typography, components, and layout.
 - `app.js` renders both menus and handles viewport scaling and fullscreen controls.
-- `menu-data.js` owns menu names, descriptions, prices, and artwork paths.
+- `screen1-data.js` or `screen2-data.js` owns menu names, descriptions, prices, and artwork paths.
   Screen 1 uses `cups`, `drink`, `scoops` (sizes, add-ons, and caption),
   `waffles.options`, and `buildYourOwn` (sauces and toppings); screen 2 uses
   `feature`, `cards`, and `footer`.
-- `screen1.html` and `screen2.html` are the TV entry points. `index.html` defaults
-  to TV 1 and supports `?screen=2`.
+- `screen1.html` and `screen2.html` are the TV entry points. `index.html` opens the chooser
+  and supports `?screen=2`.
 - `assets/README.md` records illustration provenance and prompts.
 - `export_menu.py` produces still PNGs with optional Python/Playwright tooling;
   keep export dependencies in `requirements-export.txt`, outside the static site's runtime.
@@ -168,7 +168,7 @@ retain semantic headings and accessible labels.
 
 ## Menu content and behavior
 
-Edit menu content in `menu-data.js`; do not duplicate it in HTML or CSS. Preserve
+Edit menu content in `screen1-data.js` or `screen2-data.js`; do not duplicate it in HTML or CSS. Preserve
 confirmed item names, descriptions, prices, and upgrade notation unless asked to
 change them. A `null` or empty price stays hidden. Never invent prices, promotions,
 serving claims, or badges to fill space. Preserve safe text escaping, screen
