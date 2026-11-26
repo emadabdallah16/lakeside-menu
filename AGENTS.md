@@ -79,8 +79,7 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 | Item price | `'Times New Roman', Times, serif` | Bold, 44px, line-height 1 |
 | Feature price | `'Times New Roman', Times, serif` | Bold, 88px, line-height 1, tracking -5px |
 | Screen 1 section heading | `'Times New Roman', Times, serif` | Bold italic, 56px, line-height 1.1, tracking -1.5px |
-| Screen 1 cup name | `'Times New Roman', Times, serif` | Bold italic, 48px, line-height 1.04, tracking -1px |
-| Screen 1 waffle option | `Helvetica, Arial, sans-serif` | Bold, 44px, line-height 1.1, tracking -1px |
+| Screen 1 cup, drink, and waffle option names | `'Times New Roman', Times, serif` | Bold italic, 48px, line-height 1.04, tracking -1px |
 | Screen 1 descriptions and choices | `'Courier New', Courier, monospace` | Bold, 26px, with the Sahlab description at 24px to fit two lines |
 | Screen 1 prices | `'Times New Roman', Times, serif` | Bold, 48px, brick on paper |
 | Scoop panel heading | `'Times New Roman', Times, serif` | Bold italic, 52px |

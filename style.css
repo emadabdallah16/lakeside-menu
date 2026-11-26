@@ -185,7 +185,7 @@ html, body {
   min-width: 0; min-height: 0;
 }
 .refreshment-copy { min-width: 0; }
-.refreshment-copy h2 {
+.refreshment-copy h2, .waffle-options h3 {
   margin: 0; font: italic 700 48px/1.04 'Times New Roman', Times, serif;
   letter-spacing: -1px;
 }
@@ -207,7 +207,6 @@ html, body {
 .waffle-options li { padding-bottom: 10px; border-bottom: 2px dashed var(--rule); }
 .option-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
 .option-heading > h2, .option-heading > h3 { min-width: 0; }
-.waffle-options h3 { margin: 0; font: 700 44px/1.1 Helvetica, Arial, sans-serif; letter-spacing: -1px; }
 .waffle-options p { margin-top: 8px; }
 .scoops-section { position: relative; padding: 14px 24px; background: var(--panel); transform: rotate(-1deg); }
 .scoops-section .section-title { font-size: 52px; }

@@ -28,6 +28,8 @@ Set the TV picture size to **Screen Fit**, **Just Scan**, or **1:1** (the name v
 
 See [AGENTS.md](AGENTS.md) for the shared design criteria and guidance for future changes.
 
+On TV 1, the three waffle-stick names share the bold italic 48px Times New Roman style used for the strawberry cups and Sahlab.
+
 Both TVs use the selected Retro Parlour direction: paper-yellow `#E8E0C0`, deep blue ink `#12364A`, dark brick prices `#782E24`, ochre price labels `#E4AC55` with dark brown text `#38251B`, large italic serif headings, and slightly tilted printed panels. The feature panel uses light warm `#DED1AC`; seafoam `#397A73` is reserved for decoration. Subtle halftone dots finish the feature artwork; the menu list stays clear of texture. System fonts (Times New Roman, Helvetica/Arial, Courier New) keep the menus independent of font services. The lighthouse is a simplified motif rather than the official logo.
 
 The TV palette targets at least 7:1 computed sRGB contrast for all menu text and prices: approximately 9.6:1 for blue on paper, 8.4:1 for blue on the feature panel, 7.16:1 for brick prices on paper, and 7.13:1 for dark brown on ochre. This uses the [W3C enhanced contrast guidance](https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html) as a design target. The heading's colored offsets are limited to one pixel on each side for a quieter printed edge. The original paper background is retained to match the illustrations. Verify the result on the actual TVs under store lighting; computed contrast does not account for display calibration, glare, or viewing distance.
