@@ -27,6 +27,11 @@
     </header>`;
 
   function renderFourSections() {
+    const { buildYourOwn } = data;
+    const recommendedSauces = new Set(buildYourOwn.recommendedSauces);
+    const recommendationLabel = esc(buildYourOwn.recommendationLabel);
+    const recommendationStar = '<span class="recommendation-star" aria-hidden="true">★</span>';
+
     return `
     <h1 class="visually-hidden">${esc(data.title)}</h1>
     <main class="menu-quadrants" aria-label="${esc(data.title)}">
@@ -73,17 +78,25 @@
         </div>
       </section>
       <section class="build-section" aria-labelledby="build-title">
-        <div class="option-heading"><h2 id="build-title" class="section-title">${esc(data.buildYourOwn.name)}</h2>${price(data.buildYourOwn.price, 'item-price')}</div>
+        <div class="option-heading"><h2 id="build-title" class="section-title">${esc(buildYourOwn.name)}</h2>${price(buildYourOwn.price, 'item-price')}</div>
         <div class="customization-lists">
           <div class="sauce-group">
-            <h3>${esc(data.buildYourOwn.sauceHeading)}</h3>
-            <ul class="sauce-list">${data.buildYourOwn.sauces.map(sauce => `<li>${esc(sauce)}</li>`).join('')}</ul>
+            <h3>${esc(buildYourOwn.sauceHeading)}</h3>
+            <ul class="sauce-list">${buildYourOwn.sauces.map(sauce => {
+              const recommendation = recommendedSauces.has(sauce)
+                ? `&nbsp;${recommendationStar}<span class="visually-hidden"> (${recommendationLabel})</span>`
+                : '';
+              return `<li>${esc(sauce)}${recommendation}</li>`;
+            }).join('')}</ul>
           </div>
           <div class="topping-group">
-            <h3>${esc(data.buildYourOwn.toppingHeading)}</h3>
-            <ul>${data.buildYourOwn.toppings.map(topping => `<li>${esc(topping)}</li>`).join('')}</ul>
+            <h3>${esc(buildYourOwn.toppingHeading)}</h3>
+            <ul>${buildYourOwn.toppings.map(topping => `<li>${esc(topping)}</li>`).join('')}</ul>
           </div>
         </div>
+        ${buildYourOwn.sauces.some(sauce => recommendedSauces.has(sauce))
+          ? `<p class="recommendation-legend">${recommendationStar} ${recommendationLabel}</p>`
+          : ''}
       </section>
       </div>
     </main>`;
