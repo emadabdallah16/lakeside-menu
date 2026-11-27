@@ -238,13 +238,15 @@ html, body {
 .customization-lists h3 {
   margin: 0 0 10px;
   font: 700 30px/1.15 Helvetica, Arial, sans-serif;
+}
+.customization-heading-label {
   text-decoration: underline;
   text-underline-offset: 0.14em;
 }
 .customization-lists ul { list-style: none; padding: 0; margin: 0; font: 700 26px/1.3 'Courier New', Courier, monospace; }
 .customization-lists li { break-inside: avoid; margin-bottom: 3px; }
 .sauce-list { columns: 2; column-gap: 24px; }
-.recommendation-star { color: var(--brick); }
+.recommendation-star { color: var(--brick); font-size: 1.25em; line-height: 0; }
 .recommendation-legend { justify-self: end; }
 @media (prefers-reduced-motion: reduce) {
   .product-photo { animation: none; }

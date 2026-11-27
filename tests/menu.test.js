@@ -121,8 +121,8 @@ test('screen 1 renders four sections with the complete waffle and customization 
   const sauces = ['Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
   const toppings = ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&amp;Ms', 'Sprinkles'];
   for (const choice of [...sauces, ...toppings]) assert.ok(html.includes(`<li>${choice}</li>`), `Missing choice: ${choice}`);
-  assert.ok(html.includes('<h3>Sauces (Up to 2 + 1 Drizzle)</h3>'));
-  assert.ok(html.includes('<h3>Toppings (Up to 3)</h3>'));
+  assert.ok(html.includes('<h3><span class="customization-heading-label">Sauces</span> (Up to 2 + 1 Drizzle)</h3>'));
+  assert.ok(html.includes('<h3><span class="customization-heading-label">Toppings</span> (Up to 3)</h3>'));
   assert.ok(html.includes('class="section-title">Ice Cream</h2>'));
   const star = '<span class="recommendation-star" aria-hidden="true">★</span>';
   for (const sauce of ['Milk Chocolate', 'White Chocolate']) assert.ok(html.includes(`<li>${sauce}&nbsp;${star}`));

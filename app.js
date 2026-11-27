@@ -81,7 +81,7 @@
         <div class="option-heading"><h2 id="build-title" class="section-title">${esc(buildYourOwn.name)}</h2>${price(buildYourOwn.price, 'item-price')}</div>
         <div class="customization-lists">
           <div class="sauce-group">
-            <h3>${esc(buildYourOwn.sauceHeading)}</h3>
+            <h3><span class="customization-heading-label">${esc(buildYourOwn.sauceHeading)}</span> ${esc(buildYourOwn.sauceLimit)}</h3>
             <ul class="sauce-list">${buildYourOwn.sauces.map(sauce => {
               const recommendation = recommendedSauces.has(sauce)
                 ? `&nbsp;${recommendationStar}<span class="visually-hidden"> (${recommendationLabel})</span>`
@@ -90,7 +90,7 @@
             }).join('')}</ul>
           </div>
           <div class="topping-group">
-            <h3>${esc(buildYourOwn.toppingHeading)}</h3>
+            <h3><span class="customization-heading-label">${esc(buildYourOwn.toppingHeading)}</span> ${esc(buildYourOwn.toppingLimit)}</h3>
             <ul>${buildYourOwn.toppings.map(topping => `<li>${esc(topping)}</li>`).join('')}</ul>
           </div>
         </div>

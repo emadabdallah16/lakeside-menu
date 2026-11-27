@@ -46,8 +46,10 @@ window.LAKESIDE_MENU = {
       ]
     },
     buildYourOwn: {
-      sauceHeading: 'Sauces (Up to 2 + 1 Drizzle)',
-      toppingHeading: 'Toppings (Up to 3)',
+      sauceHeading: 'Sauces',
+      sauceLimit: '(Up to 2 + 1 Drizzle)',
+      toppingHeading: 'Toppings',
+      toppingLimit: '(Up to 3)',
       name: 'Build-Your-Own Waffle Stick', price: '$7.5',
       sauces: [
         'Milk Chocolate', 'White Chocolate', 'Nutella',
