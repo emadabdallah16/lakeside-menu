@@ -3,7 +3,7 @@
 window.LAKESIDE_MENU = {
   brand: 'Lakeside Convenience',
   screen1: {
-    title: 'Strawberry cups, Sahlab, scoop ice cream & waffle sticks',
+    title: 'Strawberry cups, Sahlab, ice cream & waffle sticks',
     cups: [
       {
         name: 'Belgian Chocolate Strawberry Cup', price: '$9',
@@ -23,13 +23,13 @@ window.LAKESIDE_MENU = {
       image: 'assets/sahlab.png'
     },
     scoops: {
-      name: 'Scoop Ice Cream',
+      name: 'Ice Cream',
       caption: 'Best-Priced Scoops in Sylvan Lake!',
       sizes: [
         { name: 'Kids Scoop', price: '$2.99' },
-        { name: '1 scoop', price: '$3.99' },
-        { name: '2 scoops', price: '$6.99' },
-        { name: '3 scoops', price: '$8.99' }
+        { name: '1 Scoop', price: '$3.99' },
+        { name: '2 Scoops', price: '$6.99' },
+        { name: '3 Scoops', price: '$8.99' }
       ],
       addons: [
         { name: 'Waffle cone', price: '+$1.5' },
@@ -40,19 +40,23 @@ window.LAKESIDE_MENU = {
     waffles: {
       name: 'Waffle Sticks', image: 'assets/waffle-stick.png',
       options: [
-        { name: 'Belgian', note: 'Belgian Milk Chocolate, Oreo Crumb, White Drizzle', price: '$6' },
+        { name: 'Belgian', note: 'Milk Chocolate, Oreo Crumb, White Drizzle', price: '$6' },
         { name: 'Biscoff', note: 'Biscoff Sauce, Biscoff Crumb, White Drizzle', price: '$6' },
-        { name: 'Dubai Chocolate', note: 'Belgian Milk Chocolate, Pistachio sauce, Kataifi, Crushed Pistachios', price: '$7' }
+        { name: 'Dubai Chocolate', note: 'Milk Chocolate, Pistachio Sauce, Kataifi, Crushed Pistachios', price: '$7' }
       ]
     },
     buildYourOwn: {
       sauceHeading: 'Sauces',
+      sauceLimit: '(Up to 2 + 1 Drizzle)',
       toppingHeading: 'Toppings',
+      toppingLimit: '(Up to 3)',
       name: 'Build-Your-Own Waffle Stick', price: '$7.5',
       sauces: [
         'Milk Chocolate', 'White Chocolate', 'Nutella',
         'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'
       ],
+      recommendedSauces: ['Milk Chocolate', 'White Chocolate'],
+      recommendationLabel: 'Recommended',
       toppings: ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&Ms', 'Sprinkles']
     }
   }

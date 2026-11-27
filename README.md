@@ -15,7 +15,7 @@ In this repository go to **Settings → Pages → Build and deployment**. Select
 ## Edit your menu
 Edit `screen1-data.js` or `screen2-data.js` in GitHub and commit changes. Prices set to `null` are deliberately hidden until confirmed. The TVs automatically reload once an hour, or you can reload their browsers.
 
-TV 1 has four sections: both strawberry cups and Sahlab stacked as three rows at top left, Scoop Ice Cream in approximately the bottom 30% of the left column, three waffle-stick options at top right, and build-your-own sauces and toppings below. Edit `screen1.cups`, `screen1.drink`, `screen1.scoops`, `screen1.waffles.options`, and `screen1.buildYourOwn` in the menu data. The Belgian strawberry cup is **$9**, the Dubai strawberry cup **$13**, and Sahlab **$4**. Belgian and Biscoff waffle sticks are **$6**, Dubai Chocolate **$7**, and Build Your Own **$7.50**. Scoops cost **$2.99 / $3.99 / $6.99 / $8.99** for kids / one / two / three scoops, with waffle cone **+$1.50**, fudge **+$1.00**, and up to three toppings **+$1.50**. TV 2 retains its existing menu and `feature`, `cards`, and `footer` data structure.
+TV 1 has four sections: both strawberry cups and Sahlab stacked as three rows at top left, Ice Cream in approximately the bottom 30% of the left column, three waffle-stick options at top right, and build-your-own sauces and toppings below. Edit `screen1.cups`, `screen1.drink`, `screen1.scoops`, `screen1.waffles.options`, and `screen1.buildYourOwn` in the menu data. The Belgian strawberry cup is **$9**, the Dubai strawberry cup **$13**, and Sahlab **$4**. Belgian and Biscoff waffle sticks are **$6**, Dubai Chocolate **$7**, and Build Your Own **$7.50**. Scoops cost **$2.99 / $3.99 / $6.99 / $8.99** for kids / one / two / three scoops, with waffle cone **+$1.50**, fudge **+$1.00**, and up to three toppings **+$1.50**. TV 2 retains its existing menu and `feature`, `cards`, and `footer` data structure.
 
 ## Display
 For each 49-inch TV, set the display or HDMI output to **1920 × 1080, landscape**, set browser zoom to **100%**, and open the corresponding screen URL. Select **Enter fullscreen** with a mouse, keyboard, or TV remote. The setup button hides after four seconds and reappears when you move the pointer, tap the page, or focus it with Tab. It stays hidden during fullscreen; press Escape to leave fullscreen.
@@ -40,8 +40,9 @@ The layout is composed at 1920 × 1080 and scales as a complete canvas, preservi
 
 All small descriptions, sauce/topping choices, footer copy, and scoop add-on names
 use **bold (700)** text on both TVs for distance readability. Build-your-own waffle
-headings read **Sauces** and **Toppings**; the scoop topping add-on keeps its own
-quantity wording. Keep the existing font families and sizes when editing copy.
+headings read **Sauces (Up to 2 + 1 Drizzle)** and **Toppings (Up to 3)**. The
+`recommendedSauces` list marks sauce names with a brick-red star explained by the
+legend below the sauce list. Keep the existing font families and sizes when editing copy.
 
 ## Local preview and checks
 

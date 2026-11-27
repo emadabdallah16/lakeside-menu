@@ -51,7 +51,7 @@ test('all entry points select the intended TV and its complete menu', () => {
   for (const options of [{}, { path: '/screen1.html' }, { search: '?screen=1' }]) {
     const { stage } = render(options);
     assert.equal(stage.className, 'screen1');
-    for (const name of ['Belgian Chocolate Strawberry Cup', 'Dubai Chocolate Strawberry Cup', 'Sahlab', 'Scoop Ice Cream', 'Waffle Sticks', 'Build-Your-Own Waffle Stick']) {
+    for (const name of ['Belgian Chocolate Strawberry Cup', 'Dubai Chocolate Strawberry Cup', 'Sahlab', 'Ice Cream', 'Waffle Sticks', 'Build-Your-Own Waffle Stick']) {
       assert.ok(stage.innerHTML.includes(name));
     }
   }
@@ -114,15 +114,20 @@ test('screen 1 renders four sections with the complete waffle and customization 
   const html = stage.innerHTML;
   assert.equal((html.match(/<section /g) || []).length, 4);
   assert.equal((html.match(/<img /g) || []).length, 4, 'two cups, one drink, and one shared waffle photo');
-  for (const name of ['Belgian', 'Biscoff', 'Dubai Chocolate', 'Belgian Milk Chocolate, Oreo Crumb, White Drizzle', 'Biscoff Sauce, Biscoff Crumb, White Drizzle', 'Belgian Milk Chocolate, Pistachio sauce, Kataifi, Crushed Pistachios']) {
-    assert.ok(html.includes(name), `Missing waffle option or description: ${name}`);
+  for (const name of ['Belgian', 'Biscoff', 'Dubai Chocolate']) assert.ok(html.includes(`<h3>${name}</h3>`));
+  for (const note of ['Milk Chocolate, Oreo Crumb, White Drizzle', 'Biscoff Sauce, Biscoff Crumb, White Drizzle', 'Milk Chocolate, Pistachio Sauce, Kataifi, Crushed Pistachios']) {
+    assert.ok(html.includes(`<p>${note}</p>`), `Missing waffle description: ${note}`);
   }
-  const sauces = ['Milk Chocolate', 'White Chocolate', 'Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
+  const sauces = ['Nutella', 'Dark Chocolate', 'Pistachio', 'Biscoff', 'Caramel', 'Maple Syrup', 'Strawberry'];
   const toppings = ['Oreo Crumb', 'Biscoff Crumb', 'Pistachio', 'Marshmallow', 'M&amp;Ms', 'Sprinkles'];
   for (const choice of [...sauces, ...toppings]) assert.ok(html.includes(`<li>${choice}</li>`), `Missing choice: ${choice}`);
-  assert.ok(html.includes('<h3>Sauces</h3>'));
-  assert.ok(html.includes('<h3>Toppings</h3>'));
-  assert.ok(html.includes('Scoop Ice Cream'));
+  assert.ok(html.includes('<h3><span class="customization-heading-label">Sauces</span> (Up to 2 + 1 Drizzle)</h3>'));
+  assert.ok(html.includes('<h3><span class="customization-heading-label">Toppings</span> (Up to 3)</h3>'));
+  assert.ok(html.includes('class="section-title">Ice Cream</h2>'));
+  const star = '<span class="recommendation-star" aria-hidden="true">★</span>';
+  for (const sauce of ['Milk Chocolate', 'White Chocolate']) assert.ok(html.includes(`<li>${sauce}&nbsp;${star}`));
+  assert.ok(html.includes(`<p class="recommendation-legend">${star} Recommended</p>`));
+  assert.equal((html.match(/class="recommendation-star"/g) || []).length, 3);
   assert.ok(!html.includes('Waffle cone upgrade'));
 });
 
@@ -132,9 +137,9 @@ test('scoops include all confirmed serving sizes, add-ons, and the requested cap
     ([, label, amount]) => [label, amount]);
   assert.deepEqual(sizes, [
     ['Kids Scoop', '$2.99'],
-    ['1 scoop', '$3.99'],
-    ['2 scoops', '$6.99'],
-    ['3 scoops', '$8.99']
+    ['1 Scoop', '$3.99'],
+    ['2 Scoops', '$6.99'],
+    ['3 Scoops', '$8.99']
   ]);
   for (const [label, amount] of [['Waffle cone', '+$1.5'], ['Fudge', '+$1'], ['Toppings (up to 3)', '+$1.5']]) {
     assert.ok(html.includes(`<span>${label}</span><span class="scoop-addon-price">${amount}</span>`));

@@ -88,8 +88,9 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 | Scoop caption and Sahlab sticker | `Helvetica, Arial, sans-serif` | Bold 24px, dark brown on ochre |
 
 All small menu descriptions, choices, footer copy, and add-on names use weight 700
-for TV-distance readability. Keep waffle customization headings as **Sauces** and
-**Toppings**, without quantity qualifiers; the scoop add-on retains its own wording.
+for TV-distance readability. Use **Sauces (Up to 2 + 1 Drizzle)** and
+**Toppings (Up to 3)** for waffle customization. Mark recommended sauces with a
+brick-red star to the right of the name and explain the star in the legend below the sauce list.
 The default body font is `Helvetica, Arial, sans-serif`. Setup controls use the same
 sans-serif stack at bold 18px. Preserve the heading's subtle brick/seafoam offset
 text shadow at only +/-1px on the native canvas to limit colored fringes.
@@ -103,7 +104,7 @@ make necessary typography adjustments at the shared component level and check bo
   using `app.js`; center it with margins at other aspect ratios. Keep every item
   visible without scrolling, stretching, or cropping.
 - Screen 1 uses a brand bar and **four sections**: both strawberry cups and Sahlab
-  stacked as three photo rows at top left, Scoop Ice Cream at bottom left, the
+  stacked as three photo rows at top left, Ice Cream at bottom left, the
   waffle photo beside three named options at top right, and Build-Your-Own Waffle
   Stick at bottom right. Each cup/drink row has its photo on the left, name and
   price on a shared heading line, and description below. Keep every sauce and topping visible.
