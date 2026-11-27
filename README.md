@@ -42,7 +42,7 @@ All small descriptions, sauce/topping choices, footer copy, and scoop add-on nam
 use **bold (700)** text on both TVs for distance readability. Build-your-own waffle
 headings read **Sauces (Up to 2 + 1 Drizzle)** and **Toppings (Up to 3)**. The
 `recommendedSauces` list marks sauce names with a brick-red star explained by the
-bottom-right legend. Keep the existing font families and sizes when editing copy.
+legend below the sauce list. Keep the existing font families and sizes when editing copy.
 
 ## Local preview and checks
 

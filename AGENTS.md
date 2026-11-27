@@ -90,7 +90,7 @@ Preserve these font stacks and roles. Sizes below are CSS pixels on the native
 All small menu descriptions, choices, footer copy, and add-on names use weight 700
 for TV-distance readability. Use **Sauces (Up to 2 + 1 Drizzle)** and
 **Toppings (Up to 3)** for waffle customization. Mark recommended sauces with a
-brick-red star to the right of the name and explain the star in the bottom-right legend.
+brick-red star to the right of the name and explain the star in the legend below the sauce list.
 The default body font is `Helvetica, Arial, sans-serif`. Setup controls use the same
 sans-serif stack at bold 18px. Preserve the heading's subtle brick/seafoam offset
 text shadow at only +/-1px on the native canvas to limit colored fringes.

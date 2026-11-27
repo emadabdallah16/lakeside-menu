@@ -247,7 +247,7 @@ html, body {
 .customization-lists li { break-inside: avoid; margin-bottom: 3px; }
 .sauce-list { columns: 2; column-gap: 24px; }
 .recommendation-star { color: var(--brick); font-size: 1.25em; line-height: 0; }
-.recommendation-legend { justify-self: end; }
+.recommendation-legend { justify-self: start; }
 @media (prefers-reduced-motion: reduce) {
   .product-photo { animation: none; }
 }
